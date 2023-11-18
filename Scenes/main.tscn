@@ -1,15 +1,59 @@
-[gd_scene load_steps=5 format=3 uid="uid://deoabbasbdx6h"]
+[gd_scene load_steps=7 format=3 uid="uid://deoabbasbdx6h"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
 [ext_resource type="Script" path="res://Scenes/BirdSpawner.gd" id="2_ncqxr"]
 [ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="4_8yo7f"]
+[ext_resource type="PackedScene" uid="uid://lk0dyg3mnjgr" path="res://Scenes/bird_simple.tscn" id="5_5qfa6"]
+
+[sub_resource type="Curve2D" id="Curve2D_eobmg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -120, 400, 0, 0, 0, 0, -120, 1280)
+}
+point_count = 2
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7u3kn")
 
 [node name="BirdSpawner" type="Node2D" parent="."]
 script = ExtResource("2_ncqxr")
+
+[node name="SpawnPointsPath" type="Path2D" parent="BirdSpawner"]
+curve = SubResource("Curve2D_eobmg")
+
+[node name="SpawnPoint" type="PathFollow2D" parent="BirdSpawner/SpawnPointsPath"]
+position = Vector2(-120, 400)
+rotation = 1.5708
+
+[node name="Bird-Simple" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
+position = Vector2(-9, -88)
+rotation = -1.5708
+travel_speed = 0.3
+target = NodePath("../../../../BirdTarget")
+
+[node name="Bird-Simple2" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
+position = Vector2(119, 189)
+rotation = -1.5708
+travel_speed = 0.3
+target = NodePath("../../../../BirdTarget")
+
+[node name="Bird-Simple3" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
+position = Vector2(312, 497)
+rotation = -1.5708
+travel_speed = 1.0
+target = NodePath("../../../../BirdTarget")
+
+[node name="Bird-Simple4" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
+position = Vector2(89, 750)
+rotation = -1.5708
+travel_speed = 0.4
+target = NodePath("../../../../BirdTarget")
+
+[node name="Bird-Simple5" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
+position = Vector2(242, 994)
+rotation = -1.5708
+travel_speed = 0.5
+target = NodePath("../../../../BirdTarget")
 
 [node name="Player" parent="." instance=ExtResource("1_uuu27")]
 position = Vector2(550, 620)
@@ -30,6 +74,9 @@ scale = Vector2(343.499, 1280)
 texture_normal = ExtResource("4_8yo7f")
 action = "player_jump"
 
+[node name="BirdTarget" type="Marker2D" parent="."]
+position = Vector2(850, 1072)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="LabelMarginContainer" type="MarginContainer" parent="UI"]
@@ -45,6 +92,8 @@ theme_override_constants/margin_top = 50
 [node name="Score" type="Label" parent="UI/LabelMarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
-text = "0"
+text = "0
+"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2

@@ -1,5 +1,25 @@
-[gd_scene format=3 uid="uid://lk0dyg3mnjgr"]
+[gd_scene load_steps=4 format=3 uid="uid://lk0dyg3mnjgr"]
+
+[ext_resource type="Texture2D" uid="uid://byyicn7457ys1" path="res://Assets/Art/flappyBirb.png" id="1_am0rq"]
+[ext_resource type="Script" path="res://Scenes/bird_simple.gd" id="1_h84ic"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lpxof"]
+radius = 47.0
+height = 162.0
 
 [node name="Bird-Simple" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_h84ic")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_am0rq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(1, 9)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lpxof")
+
+[node name="JumpTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
