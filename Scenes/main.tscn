@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://deoabbasbdx6h"]
+
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
+[ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
+[ext_resource type="Script" path="res://Scenes/BirdSpawner.gd" id="2_ncqxr"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_7u3kn")
+
+[node name="BirdSpawner" type="Node2D" parent="."]
+script = ExtResource("2_ncqxr")
+
+[node name="Player" parent="." instance=ExtResource("1_uuu27")]
+position = Vector2(509, 620)

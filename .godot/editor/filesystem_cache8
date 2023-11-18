@@ -1,0 +1,13 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1700314108
+icon.svg::CompressedTexture2D::442150411035143104::1700311781::1700311789::1::::<><>::
+::res://Assets/::1700311807
+::res://Assets/Art/::1700314640
+PipeHorizontal.png::CompressedTexture2D::269985873379460987::1700313023::1700313044::1::::<><>::
+PipeHorizontalNoHighlight.png::CompressedTexture2D::4234970378587405629::1700313131::1700313132::1::::<><>::
+PipeVertical.png::CompressedTexture2D::3259240595989406003::1700314640::1700314641::1::::<><>::
+::res://Scenes/::1700314629
+main.tscn::PackedScene::7468920553324844137::1700314537::0::1::::<><>::uid://db4trvtd8vv77::::res://Scenes/player.tscn
+player.tscn::PackedScene::7290502963466908172::1700314629::0::1::::<><>::uid://bmo2hmg02boit::::res://Assets/Art/PipeVertical.png<>res://Scenes/player.gd<>uid://b1lplw76w00vh::::res://Assets/Art/PipeHorizontalNoHighlight.png<>uid://d31vl3s33yut::::res://Assets/Art/PipeHorizontal.png
+bird_simple.tscn::PackedScene::794245610877809705::1700314537::0::1::::<><>::
+player.gd::GDScript::-1::1700314438::0::1::::<>CharacterBody2D<>::

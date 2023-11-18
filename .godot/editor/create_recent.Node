@@ -1,0 +1,7 @@
+CollisionPolygon2D
+Area2D
+CollisionShape2D
+Marker2D
+Node2D
+Sprite2D
+CharacterBody2D
