@@ -4,6 +4,9 @@ class_name Player
 @export var jump_speed = -600
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+@onready var upper_pipe_offset: int = $UpperPipeConnection.position.y
+@onready var lower_pipe_offset: int = $LowerPipeConnection.position.y
+
 @onready var upper_start_value: int = $UpperPipe.position.y
 @onready var lower_start_value: int = $LowerPipe.position.y
 
@@ -15,9 +18,7 @@ var smash_pressed: bool = false
 var smashing: bool = false
 
 func _ready():
-	screen_size = get_viewport().get_visible_rect().size
-	global_position.y = screen_size.y / 2
-
+	screen_size = get_viewport_rect().size
 
 func _input(event):
 	if event.is_action_pressed("player_jump"):
@@ -29,13 +30,13 @@ func _input(event):
 		smash_pressed = true
 
 func _process(delta):
-#	screen_size = get_viewport().get_visible_rect().size
-#	print(screen_size)
-	global_position.y = clamp(global_position.y, 263, screen_size.y)
-	if($LowerPipeConnection.global_position.y > screen_size.y):
-		velocity.y = 0
-	elif($UpperPipeConnection.global_position.y < 0):
+	#Clamp Position
+	position.y = clamp(position.y,lower_pipe_offset, screen_size.y + upper_pipe_offset)
+	
+	if(position.y < lower_pipe_offset):
 		velocity.y += gravity * delta
+	elif(position.y > screen_size.y + upper_pipe_offset - 1):
+		velocity.y = 0
 	else:
 		velocity.y += gravity * delta
 		

@@ -12,21 +12,21 @@ script = ExtResource("1_7u3kn")
 script = ExtResource("2_ncqxr")
 
 [node name="Player" parent="." instance=ExtResource("1_uuu27")]
-position = Vector2(520, 960)
+position = Vector2(550, 620)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(360, 640)
 
 [node name="RightTap" type="TouchScreenButton" parent="Camera2D"]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(370, 0)
-scale = Vector2(350, 1280)
+position = Vector2(369, -6)
+scale = Vector2(343.499, 1280)
 texture_normal = ExtResource("4_8yo7f")
 action = "smash"
 
 [node name="LeftTap" type="TouchScreenButton" parent="Camera2D"]
 modulate = Color(1, 1, 1, 0)
-scale = Vector2(350, 1280)
+scale = Vector2(343.499, 1280)
 texture_normal = ExtResource("4_8yo7f")
 action = "player_jump"
 
@@ -36,9 +36,9 @@ action = "player_jump"
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.5
-offset_right = 20.5
-offset_bottom = 152.0
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 50
 
