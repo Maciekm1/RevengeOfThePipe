@@ -1,4 +1,7 @@
 extends CharacterBody2D
+class_name Bird
+
+signal destroyed(score_gain: int)
 
 @export var jump_speed = -400
 @export var min_jump_cd: float = 0.2
@@ -7,6 +10,7 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var target: Marker2D
+@export var score_given: int = 1
 
 var can_jump: bool = true
 
@@ -37,6 +41,10 @@ func update_sprite():
 #	var tween = create_tween()
 #	tween.tween_property($Sprite2D, "rotation", $Sprite2D.rotation_degrees, clamp(90 * (velocity.y / 1000), 0, 90))
 	$Sprite2D.rotation_degrees = 90 * (velocity.y / 1000)
+
+func destroy():
+	destroyed.emit(score_given)
+	queue_free()
 
 func _on_jump_timer_timeout():
 	can_jump = true

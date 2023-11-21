@@ -31,9 +31,11 @@ texture = ExtResource("1_nnaa0")
 position = Vector2(0, -55)
 texture = ExtResource("2_1b576")
 
-[node name="UpperArea2D" type="Area2D" parent="."]
+[node name="UpperArea2D" type="Area2D" parent="UpperPipe"]
+position = Vector2(0, 150)
+collision_mask = 2
 
-[node name="Upper" type="CollisionShape2D" parent="UpperArea2D"]
+[node name="Upper" type="CollisionShape2D" parent="UpperPipe/UpperArea2D"]
 position = Vector2(0, -205)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_fvnj8")
@@ -58,9 +60,12 @@ position = Vector2(0, -55)
 scale = Vector2(-1, -1)
 texture = ExtResource("3_gi2c8")
 
-[node name="LowerArea2D" type="Area2D" parent="."]
+[node name="LowerArea2D" type="Area2D" parent="LowerPipe"]
+position = Vector2(0, 150)
+rotation = 3.14159
+collision_mask = 2
 
-[node name="Lower" type="CollisionShape2D" parent="LowerArea2D"]
+[node name="Lower" type="CollisionShape2D" parent="LowerPipe/LowerArea2D"]
 position = Vector2(0, 205)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_6noob")
@@ -73,5 +78,5 @@ visible = false
 polygon = PackedVector2Array(-190, -91, -197, -2, -101, -68)
 disabled = true
 
-[connection signal="body_entered" from="UpperArea2D" to="." method="_on_upper_area_2d_body_entered"]
-[connection signal="body_entered" from="LowerArea2D" to="." method="_on_lower_area_2d_body_entered"]
+[connection signal="body_entered" from="UpperPipe/UpperArea2D" to="." method="_on_upper_area_2d_body_entered"]
+[connection signal="body_entered" from="LowerPipe/LowerArea2D" to="." method="_on_lower_area_2d_body_entered"]

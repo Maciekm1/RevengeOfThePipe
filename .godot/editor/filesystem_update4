@@ -1,4 +1,7 @@
-res://Scenes/main.tscn
-res://Scenes/bird_simple.tscn
-res://Scenes/bird_simple.gd
 res://Scenes/player.tscn
+res://Scenes/main.tscn
+res://Scenes/BirdSpawner.gd
+res://Scenes/bird_simple.gd
+res://Scenes/main.gd
+res://Scenes/bird_simple.tscn
+res://Scenes/player.gd

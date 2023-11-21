@@ -8,7 +8,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_eobmg"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -120, 400, 0, 0, 0, 0, -120, 1280)
+"points": PackedVector2Array(0, 0, 0, 0, -120, 400, 0, 0, 0, 0, -120, 1000)
 }
 point_count = 2
 
@@ -17,6 +17,7 @@ script = ExtResource("1_7u3kn")
 
 [node name="BirdSpawner" type="Node2D" parent="."]
 script = ExtResource("2_ncqxr")
+enemy_to_spawn = ExtResource("5_5qfa6")
 
 [node name="SpawnPointsPath" type="Path2D" parent="BirdSpawner"]
 curve = SubResource("Curve2D_eobmg")
@@ -25,35 +26,8 @@ curve = SubResource("Curve2D_eobmg")
 position = Vector2(-120, 400)
 rotation = 1.5708
 
-[node name="Bird-Simple" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
-position = Vector2(-9, -88)
-rotation = -1.5708
-travel_speed = 0.3
-target = NodePath("../../../../BirdTarget")
-
-[node name="Bird-Simple2" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
-position = Vector2(119, 189)
-rotation = -1.5708
-travel_speed = 0.3
-target = NodePath("../../../../BirdTarget")
-
-[node name="Bird-Simple3" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
-position = Vector2(312, 497)
-rotation = -1.5708
-travel_speed = 1.0
-target = NodePath("../../../../BirdTarget")
-
-[node name="Bird-Simple4" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
-position = Vector2(89, 750)
-rotation = -1.5708
-travel_speed = 0.4
-target = NodePath("../../../../BirdTarget")
-
-[node name="Bird-Simple5" parent="BirdSpawner/SpawnPointsPath/SpawnPoint" node_paths=PackedStringArray("target") instance=ExtResource("5_5qfa6")]
-position = Vector2(242, 994)
-rotation = -1.5708
-travel_speed = 0.5
-target = NodePath("../../../../BirdTarget")
+[node name="BirdSpawnTimer" type="Timer" parent="BirdSpawner"]
+autostart = true
 
 [node name="Player" parent="." instance=ExtResource("1_uuu27")]
 position = Vector2(550, 620)
@@ -97,3 +71,5 @@ text = "0
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[connection signal="timeout" from="BirdSpawner/BirdSpawnTimer" to="BirdSpawner" method="_on_bird_spawn_timer_timeout"]
