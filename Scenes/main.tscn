@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://deoabbasbdx6h"]
+[gd_scene load_steps=8 format=3 uid="uid://deoabbasbdx6h"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
 [ext_resource type="Script" path="res://Scenes/BirdSpawner.gd" id="2_ncqxr"]
+[ext_resource type="PackedScene" uid="uid://d38nwkfircsoc" path="res://Scenes/bomb_simple.tscn" id="3_i1f2u"]
 [ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="4_8yo7f"]
 [ext_resource type="PackedScene" uid="uid://lk0dyg3mnjgr" path="res://Scenes/bird_simple.tscn" id="5_5qfa6"]
 
@@ -17,7 +18,7 @@ script = ExtResource("1_7u3kn")
 
 [node name="BirdSpawner" type="Node2D" parent="."]
 script = ExtResource("2_ncqxr")
-enemy_to_spawn = ExtResource("5_5qfa6")
+enemy_to_spawn = Array[PackedScene]([ExtResource("5_5qfa6"), ExtResource("3_i1f2u")])
 
 [node name="SpawnPointsPath" type="Path2D" parent="BirdSpawner"]
 curve = SubResource("Curve2D_eobmg")

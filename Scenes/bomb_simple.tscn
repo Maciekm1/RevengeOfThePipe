@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://d38nwkfircsoc"]
+
+[ext_resource type="Script" path="res://Scenes/bird_simple.gd" id="1_83pj0"]
+[ext_resource type="Texture2D" uid="uid://cvdbu1h3352rk" path="res://Assets/Art/bomb_thing.svg" id="2_43xdk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h864t"]
+radius = 41.0
+
+[node name="bomb_simple" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_83pj0")
+jump_speed = 0
+min_jump_cd = 2.08165e-12
+max_jump_cd = 2.08165e-12
+travel_speed = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_43xdk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_h864t")
+
+[node name="JumpTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
