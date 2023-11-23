@@ -22,6 +22,8 @@ func _ready():
 	health = max_health
 	
 	if health_bar:
+		if max_health == 1:
+			health_bar.hide()
 		health_bar.max_value = max_health
 
 func _process(delta):

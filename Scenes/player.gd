@@ -20,6 +20,7 @@ var screen_size: Vector2
 var jump_pressed: bool = false
 var smash_pressed: bool = false
 var smashing: bool = false
+var smashing_invul: bool = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -38,6 +39,7 @@ func _input(event):
 		
 	if event.is_action_pressed("smash"):
 		smash_pressed = true
+		smashing_invul = true
 
 func _process(delta):
 	#Clamp Position
@@ -56,6 +58,7 @@ func _process(delta):
 		
 	if smash_pressed:
 		if not smashing:
+			smashing_invul = true
 			smashing = true
 			execute_smash()
 		smash_pressed = false
@@ -73,6 +76,8 @@ func execute_smash():
 	tween.tween_property($UpperPipe, "position:y", 0, 0.15)
 	
 	await get_tree().create_timer(.8).timeout
+	
+	smashing_invul = false
 	
 	var tween_back = get_tree().create_tween()
 	tween_back.set_parallel(true)
@@ -109,4 +114,5 @@ func reset():
 	$HealthComponent.health = $HealthComponent.max_health
 
 func take_damage(damage: int):
-	$HealthComponent.take_damage(damage)
+	if not smashing_invul:
+		$HealthComponent.take_damage(damage)
