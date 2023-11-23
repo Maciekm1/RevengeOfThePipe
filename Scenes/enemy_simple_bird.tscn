@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyt7ynyyr7ef1"]
+
+[ext_resource type="PackedScene" uid="uid://cdvrwf87xdexm" path="res://Scenes/enemy.tscn" id="1_mafni"]
+[ext_resource type="Script" path="res://Scenes/enemy_simple_bird.gd" id="2_4h1u1"]
+[ext_resource type="Texture2D" uid="uid://byyicn7457ys1" path="res://Assets/Art/flappyBirb.png" id="2_keo41"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_12lh6"]
+radius = 42.0
+height = 134.0
+
+[node name="EnemySimpleBird" instance=ExtResource("1_mafni")]
+script = ExtResource("2_4h1u1")
+jump_strength_max = 450.0
+jump_strength_min = 250.0
+jump_cd = 0.5
+damage_dealt = 0
+move_speed = 300.0
+points_given = 3
+
+[node name="HealthComponent" parent="." index="0" node_paths=PackedStringArray("health_bar")]
+max_health = 2
+health_bar = NodePath("../MarginContainer/ProgressBar")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_keo41")
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+position = Vector2(3, 8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_12lh6")
+
+[node name="Timers" type="Node" parent="." index="3"]
+
+[node name="JumpCdTimer" type="Timer" parent="Timers" index="0"]
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="4"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 90
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer" index="0"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+step = 1.0
+show_percentage = false
+
+[connection signal="timeout" from="Timers/JumpCdTimer" to="." method="_on_jump_cd_timer_timeout"]

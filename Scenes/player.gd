@@ -102,7 +102,6 @@ func death():
 	reset()
 
 func reset():
-	position.y = 620
 	velocity.y = 0
 	smashing = false
 	jump_pressed = false

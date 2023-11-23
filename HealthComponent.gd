@@ -9,13 +9,20 @@ var health: int:
 	set(value):
 		health = value
 		on_health_change.emit(health)
+		if health_bar:
+			update_health_bar()
 		if(health <= 0):
 			health = 0
 			death()
 @export var regeneration: float = 0
 
+@export var health_bar: ProgressBar
+
 func _ready():
 	health = max_health
+	
+	if health_bar:
+		health_bar.max_value = max_health
 
 func _process(delta):
 	if regeneration:
@@ -26,3 +33,7 @@ func take_damage(damage: int):
 
 func death():
 	on_death.emit()
+
+func update_health_bar():
+	var tween = create_tween()
+	tween.tween_property(health_bar, "value", health, 0.1)

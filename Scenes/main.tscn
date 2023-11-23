@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://deoabbasbdx6h"]
+[gd_scene load_steps=8 format=3 uid="uid://deoabbasbdx6h"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
 [ext_resource type="Script" path="res://Scenes/BirdSpawner.gd" id="2_ncqxr"]
 [ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="4_8yo7f"]
+[ext_resource type="PackedScene" uid="uid://dyt7ynyyr7ef1" path="res://Scenes/enemy_simple_bird.tscn" id="4_t5dcg"]
 [ext_resource type="PackedScene" uid="uid://dfys04kfweb4q" path="res://Scenes/enemy_bomb.tscn" id="7_y0bvl"]
 
 [sub_resource type="Curve2D" id="Curve2D_eobmg"]
@@ -17,7 +18,7 @@ script = ExtResource("1_7u3kn")
 
 [node name="BirdSpawner" type="Node2D" parent="."]
 script = ExtResource("2_ncqxr")
-enemy_to_spawn = Array[PackedScene]([ExtResource("7_y0bvl")])
+enemy_to_spawn = Array[PackedScene]([ExtResource("7_y0bvl"), ExtResource("4_t5dcg")])
 
 [node name="SpawnPointsPath" type="Path2D" parent="BirdSpawner"]
 position = Vector2(0, 179)
@@ -51,6 +52,9 @@ action = "player_jump"
 
 [node name="EnemyTarget" type="Marker2D" parent="."]
 position = Vector2(1243, 935)
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(1200, 400, 1200, 1520)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

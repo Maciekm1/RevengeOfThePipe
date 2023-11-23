@@ -14,6 +14,9 @@ var target: Vector2
 func _ready():
 	health.connect("on_death", death)
 	
+func _process(delta):
+	pass
+	
 func _physics_process(delta):
 	move_towards_target(delta)
 	var collision = move_and_collide(velocity * delta)

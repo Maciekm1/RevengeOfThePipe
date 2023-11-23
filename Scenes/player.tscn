@@ -20,7 +20,7 @@ script = ExtResource("1_nuqim")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("2_kfsep")
-max_health = 20
+max_health = 30
 
 [node name="UpperPipe" type="Node2D" parent="."]
 position = Vector2(0, -250)

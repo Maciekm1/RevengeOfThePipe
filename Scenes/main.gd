@@ -28,7 +28,9 @@ func reset():
 func spawn_enemy(enemy: PackedScene, pos: Vector2):
 	var new_Enemy: Enemy = enemy.instantiate() as Enemy
 	new_Enemy.position = pos
-	new_Enemy.target = $EnemyTarget.position
+	
+	var t = randf()
+	new_Enemy.target = $Line2D.points[0].lerp($Line2D.points[1], t)
 	new_Enemy.connect("on_death", on_enemy_death)
 	add_child(new_Enemy)
 	

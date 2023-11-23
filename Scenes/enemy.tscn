@@ -11,6 +11,6 @@ health = NodePath("HealthComponent")
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("2_towc4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

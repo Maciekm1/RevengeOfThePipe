@@ -8,3 +8,5 @@ res://Scenes/enemy_bomb.tscn
 res://Scenes/enemy.gd
 res://HealthComponent.gd
 res://Scenes/player.gd
+res://Scenes/enemy_simple_bird.tscn
+res://Scenes/enemy_simple_bird.gd

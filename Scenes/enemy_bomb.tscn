@@ -9,9 +9,9 @@ radius = 50.0
 [node name="EnemyBomb" instance=ExtResource("1_r7am1")]
 move_speed = 300.0
 
-[node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("CircleShape2D_3qsqm")
-
-[node name="Sprite2D" parent="." index="2"]
+[node name="Sprite2D" parent="." index="1"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_o2upt")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_3qsqm")
