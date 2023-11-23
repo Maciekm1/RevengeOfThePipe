@@ -2,3 +2,4 @@ res://Scenes/bomb_simple.tscn
 res://Scenes/main.tscn
 res://Scenes/bird_simple.tscn
 res://Scenes/player.tscn
+res://Scenes/player.gd

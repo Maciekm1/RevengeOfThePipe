@@ -1,7 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
-@export var jump_speed = -600
+@export var jump_speed: float = -700
+@export var accel = 150
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var upper_pipe_offset: int = $UpperPipeConnection.position.y
@@ -41,7 +42,9 @@ func _process(delta):
 		velocity.y += gravity * delta
 		
 	if jump_pressed:
-		velocity.y = jump_speed
+#		velocity.y = jump_speed
+		velocity.y = lerp(velocity.y, jump_speed, accel * delta)
+		print(velocity.y)
 		
 	if smash_pressed:
 		if not smashing:
@@ -56,6 +59,8 @@ func execute_smash():
 	
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
+	tween.tween_property($UpperPipe/UpperPipeH, "modulate", Color(0.8, 0.6, 0.8), 0.05)
+	tween.tween_property($LowerPipe/LowerPipeH, "modulate", Color(0.8, 0.6, 0.8), 0.05)
 	tween.tween_property($LowerPipe, "position:y", 0, 0.15)
 	tween.tween_property($UpperPipe, "position:y", 0, 0.15)
 	
@@ -63,6 +68,8 @@ func execute_smash():
 	
 	var tween_back = get_tree().create_tween()
 	tween_back.set_parallel(true)
+	tween_back.tween_property($UpperPipe/UpperPipeH, "modulate", Color(1, 1, 1), 0.3)
+	tween_back.tween_property($LowerPipe/LowerPipeH, "modulate", Color(1, 1, 1), 0.3)
 	tween_back.tween_property($LowerPipe, "position:y", lower_start_value, 0.4)
 	await tween_back.tween_property($UpperPipe, "position:y", upper_start_value, 0.4).finished
 	
