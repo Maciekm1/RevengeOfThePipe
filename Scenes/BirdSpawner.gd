@@ -1,7 +1,7 @@
 extends Node2D
-class_name BirdSpawner
+class_name enemySpawner
 
-signal spawn_bird(bird, pos)
+signal spawn_enemy(enemy, pos)
 
 @onready var spawn_points_path = $SpawnPointsPath
 @onready var spawn_point = $SpawnPointsPath/SpawnPoint
@@ -9,21 +9,21 @@ signal spawn_bird(bird, pos)
 @export var enemy_to_spawn: Array[PackedScene]
 @export var spawn_time: float = 2
 
-var can_spawn_bird: bool = false
+var can_spawn_enemy: bool = false
 
 func _ready():
-	$BirdSpawnTimer.wait_time = spawn_time
+	$enemySpawnTimer.wait_time = spawn_time
 	
 func _process(delta):
-	if(can_spawn_bird):
+	if(can_spawn_enemy):
 		$SpawnPointsPath/SpawnPoint.progress_ratio = randf_range(0, 1)
-		create_bird(enemy_to_spawn[randi() % enemy_to_spawn.size()], $SpawnPointsPath/SpawnPoint.position)
+		create_enemy(enemy_to_spawn[randi() % enemy_to_spawn.size()], $SpawnPointsPath/SpawnPoint.position)
 
-func create_bird(bird: PackedScene, pos: Vector2):
-	can_spawn_bird = false
-	spawn_bird.emit(bird, pos)
-	$BirdSpawnTimer.start()
+func create_enemy(enemy: PackedScene, pos: Vector2):
+	can_spawn_enemy = false
+	spawn_enemy.emit(enemy, pos)
+	$enemySpawnTimer.start()
 
 
-func _on_bird_spawn_timer_timeout():
-	can_spawn_bird = true
+func _on_enemy_spawn_timer_timeout():
+	can_spawn_enemy = true

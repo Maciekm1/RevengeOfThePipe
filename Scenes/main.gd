@@ -10,23 +10,31 @@ var game_time: float = 0
 @onready var score_label = $UI/LabelMarginContainer/Score
 
 func _ready():
-	$BirdSpawner.connect("spawn_bird", spawn_bird)
+	$BirdSpawner.connect("spawn_enemy", spawn_enemy)
+	$Player.connect("on_health_change", update_health_bar_ui)
+	$Player.connect("on_death", reset)
+	
+	# health Bar For Player
+	$UI/MarginContainer/HealthBar.max_value = $Player.get_node("HealthComponent").max_health
+	update_health_bar_ui($Player.get_node("HealthComponent").max_health)
 	
 func _process(delta):
 	game_time += delta
 	
 func reset():
-	player.reset()
 	score = 0
 	game_time = 0
 	
-func spawn_bird(bird: PackedScene, pos: Vector2):
-	var new_bird: Bird = bird.instantiate() as Bird
-	new_bird.position = pos
-	new_bird.target = $BirdTarget
-	new_bird.connect("destroyed", on_bird_destroy)
-	add_child(new_bird)
+func spawn_enemy(enemy: PackedScene, pos: Vector2):
+	var new_Enemy: Enemy = enemy.instantiate() as Enemy
+	new_Enemy.position = pos
+	new_Enemy.target = $EnemyTarget.position
+	new_Enemy.connect("on_death", on_enemy_death)
+	add_child(new_Enemy)
 	
-func on_bird_destroy(score_gain: int):
+func on_enemy_death(score_gain: int):
 	score += score_gain
 	
+func update_health_bar_ui(new_health):
+	var tween = create_tween()
+	tween.tween_property($UI/MarginContainer/HealthBar, "value", new_health, 0.1)

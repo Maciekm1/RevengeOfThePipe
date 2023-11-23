@@ -2,7 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 @export var jump_speed: float = -700
-@export var accel = 150
+@export var accel: float = 150
+@export var player_damage: float = 1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var upper_pipe_offset: int = $UpperPipeConnection.position.y
@@ -12,6 +13,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var lower_start_value: int = $LowerPipe.position.y
 
 signal smash
+signal on_death
+signal on_health_change(current_health)
 
 var screen_size: Vector2
 var jump_pressed: bool = false
@@ -20,6 +23,12 @@ var smashing: bool = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	
+	$HealthComponent.connect("on_health_change",health_change)
+	$HealthComponent.connect("on_death", death)
+
+func health_change(current_health):
+	on_health_change.emit(current_health)
 
 func _input(event):
 	if event.is_action_pressed("player_jump"):
@@ -44,7 +53,6 @@ func _process(delta):
 	if jump_pressed:
 #		velocity.y = jump_speed
 		velocity.y = lerp(velocity.y, jump_speed, accel * delta)
-		print(velocity.y)
 		
 	if smash_pressed:
 		if not smashing:
@@ -77,16 +85,29 @@ func execute_smash():
 
 
 func _on_lower_area_2d_body_entered(body):
-	if "destroy" in body:
-		body.destroy()
+	if "take_damage" in body:
+		body.take_damage(player_damage)
+	if "damage_dealt" in body:
+		take_damage(body.damage_dealt)
 		
 func _on_upper_area_2d_body_entered(body):
-	if "destroy" in body:
-		body.destroy()
+	if "take_damage" in body:
+		body.take_damage(player_damage)
+	if "damage_dealt" in body:
+		take_damage(body.damage_dealt)
 		
+		
+func death():
+	on_death.emit()
+	reset()
+
 func reset():
 	position.y = 620
 	velocity.y = 0
 	smashing = false
 	jump_pressed = false
 	smash_pressed = false
+	$HealthComponent.health = $HealthComponent.max_health
+
+func take_damage(damage: int):
+	$HealthComponent.take_damage(damage)

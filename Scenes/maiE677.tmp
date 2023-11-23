@@ -73,24 +73,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -127.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
-
-[node name="HealthBar" type="ProgressBar" parent="UI/MarginContainer"]
-modulate = Color(0, 1, 0.2, 1)
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-step = 1.0
-allow_greater = true
-show_percentage = false
+[node name="TargetLine" type="Line2D" parent="."]
+points = PackedVector2Array(1200, 0, 1200, 1920)
 
 [connection signal="timeout" from="BirdSpawner/enemySpawnTimer" to="BirdSpawner" method="_on_enemy_spawn_timer_timeout"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfys04kfweb4q"]
+
+[ext_resource type="PackedScene" uid="uid://cdvrwf87xdexm" path="res://Scenes/enemy.tscn" id="1_r7am1"]
+[ext_resource type="Texture2D" uid="uid://cvdbu1h3352rk" path="res://Assets/Art/bomb_thing.svg" id="2_o2upt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3qsqm"]
+radius = 50.0
+
+[node name="EnemyBomb" instance=ExtResource("1_r7am1")]
+move_speed = 300.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_3qsqm")
+
+[node name="Sprite2D" parent="." index="2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o2upt")
