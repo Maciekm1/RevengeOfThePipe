@@ -1,4 +1,10 @@
-res://Scenes/bird_simple.tscn::cbbebc8c89067764f1b1ac065aa78208::1700737649::res://.godot/exported/133200997/export-2304a3e73b8a0870cab5fd0904814597-bird_simple.scn
-res://Scenes/main.tscn::f96e5139be053aeccda5730e77db2acd::1700737649::res://.godot/exported/133200997/export-2ddd04d543d5858e7f20c9299a8b5096-main.scn
-res://Scenes/player.tscn::50aa127e92cc90bd3dee52b37dc99dd8::1700737891::res://.godot/exported/133200997/export-1753c997600d68ab5d20ae99fddb15c6-player.scn
-res://Scenes/bomb_simple.tscn::f017ea2790b3b9d3e93acabd2f557df9::1700737649::res://.godot/exported/133200997/export-91fe7ae5bdbaf916b67fa002cb08ad9d-bomb_simple.scn
+res://Scenes/bird_simple.tscn::cbbebc8c89067764f1b1ac065aa78208::1700776834::res://.godot/exported/133200997/export-2304a3e73b8a0870cab5fd0904814597-bird_simple.scn
+res://Scenes/main.tscn::3159e12cae337d2c6e3202778f8aeee4::1700824799::res://.godot/exported/133200997/export-2ddd04d543d5858e7f20c9299a8b5096-main.scn
+res://Scenes/player.tscn::2def448531d2b42271d01d2ca7b928f8::1700824422::res://.godot/exported/133200997/export-1753c997600d68ab5d20ae99fddb15c6-player.scn
+res://Scenes/bomb_simple.tscn::f017ea2790b3b9d3e93acabd2f557df9::1700776700::res://.godot/exported/133200997/export-91fe7ae5bdbaf916b67fa002cb08ad9d-bomb_simple.scn
+res://Scenes/enemy.tscn::cbda1f9878308f23046e42eedbafbdd2::1700824422::res://.godot/exported/133200997/export-7111e2a4ba75c4a329f0f9553f2950f2-enemy.scn
+res://Scenes/enemy_bomb.tscn::d51242ce44004311a7e053fa46a7f845::1700824422::res://.godot/exported/133200997/export-cb73bd546b1661aeeac503d65a802430-enemy_bomb.scn
+res://Scenes/enemy_simple_bird.tscn::1e002431272310a17328ab58b34933cd::1700824423::res://.godot/exported/133200997/export-f9f763efb70eeb64a5d9104f371667a0-enemy_simple_bird.scn
+res://Scenes/health_component.tscn::3b555af0f52e173922012a0544ab0b45::1700773807::res://.godot/exported/133200997/export-a29723d3eb5a6077579d6f1ce4b857ee-health_component.scn
+res://Scenes/enemy_tanky_bird.tscn::b4255d516057fd9a77dd8c5ade5c6879::1700824423::res://.godot/exported/133200997/export-9eb87c5709311195a75727042fba8224-enemy_tanky_bird.scn
+res://Scenes/enemy_speedy_bird.tscn::ae35ef598e8f981d97a714e631c8fe75::1700824423::res://.godot/exported/133200997/export-a18b0304c342390b33bac123c9c5ea51-enemy_speedy_bird.scn

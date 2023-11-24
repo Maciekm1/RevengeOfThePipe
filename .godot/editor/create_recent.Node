@@ -1,9 +1,9 @@
+Timer
+Node
 ProgressBar
 MarginContainer
 VBoxContainer
-Node
 Node2D
-Timer
 Line2D
 HealthComponent
 CollisionShape2D

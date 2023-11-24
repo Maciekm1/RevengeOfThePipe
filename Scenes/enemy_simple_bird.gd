@@ -4,6 +4,7 @@ extends Enemy
 @export var jump_strength_min: float = 250
 
 @export var jump_cd: float = .5
+@export var hurt_speed_modifier: float = 5
 var can_jump: bool = true
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -27,8 +28,10 @@ func move_towards_target(delta):
 	else:
 		velocity.y += gravity * delta
 	
-	if abs(target.x - position.x) >= 10:
+	if abs(target.x - position.x) >= 10 and not hurt:
 		velocity.x = direction_x * move_speed
+	elif hurt:
+		velocity.x = -direction_x * move_speed * hurt_speed_modifier
 	else:
 		velocity = Vector2.ZERO
 
@@ -42,3 +45,4 @@ func jump():
 
 func _on_jump_cd_timer_timeout():
 	can_jump = true
+

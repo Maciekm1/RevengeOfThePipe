@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cemco87sdcl8d"]
+
+[ext_resource type="PackedScene" uid="uid://dyt7ynyyr7ef1" path="res://Scenes/enemy_simple_bird.tscn" id="1_c8ttq"]
+
+[node name="EnemySpeedyBird" instance=ExtResource("1_c8ttq")]
+jump_strength_max = 300.0
+jump_strength_min = 150.0
+hurt_speed_modifier = 3.0
+move_speed = 450.0
+points_given = 5
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(0.219608, 1, 1, 1)
+scale = Vector2(0.8, 0.8)
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = true
+
+[node name="MarginContainer" parent="." index="3"]
+theme_override_constants/margin_top = 60

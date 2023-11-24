@@ -10,6 +10,7 @@ signal on_death(point_gain)
 @export var points_given:int = 1
 
 var target: Vector2
+var hurt: bool = false
 
 func _ready():
 	health.connect("on_death", death)
@@ -35,8 +36,14 @@ func move_towards_target(delta):
 		velocity = Vector2.ZERO
 		
 func take_damage(damage: int):
+	hurt = true
+	$Timers/hurtTimer.start()
 	health.take_damage(damage)
 	
 func death():
 	on_death.emit(points_given)
 	call_deferred("queue_free")
+
+
+func _on_hurt_timer_timeout():
+	hurt = false

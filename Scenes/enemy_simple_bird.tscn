@@ -5,15 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://byyicn7457ys1" path="res://Assets/Art/flappyBirb.png" id="2_keo41"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_12lh6"]
-radius = 42.0
-height = 134.0
+radius = 35.0
+height = 108.0
 
 [node name="EnemySimpleBird" instance=ExtResource("1_mafni")]
 script = ExtResource("2_4h1u1")
 jump_strength_max = 450.0
 jump_strength_min = 250.0
 jump_cd = 0.5
-damage_dealt = 0
+hurt_speed_modifier = 5.0
 move_speed = 300.0
 points_given = 3
 
@@ -29,11 +29,7 @@ position = Vector2(3, 8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_12lh6")
 
-[node name="Timers" type="Node" parent="." index="3"]
-
-[node name="JumpCdTimer" type="Timer" parent="Timers" index="0"]
-
-[node name="MarginContainer" type="MarginContainer" parent="." index="4"]
+[node name="MarginContainer" type="MarginContainer" parent="." index="3"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -49,5 +45,7 @@ custom_minimum_size = Vector2(150, 25)
 layout_mode = 2
 step = 1.0
 show_percentage = false
+
+[node name="JumpCdTimer" type="Timer" parent="Timers" index="0"]
 
 [connection signal="timeout" from="Timers/JumpCdTimer" to="." method="_on_jump_cd_timer_timeout"]
