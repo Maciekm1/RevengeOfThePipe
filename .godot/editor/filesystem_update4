@@ -1,10 +1,5 @@
-res://Scenes/enemy_simple_bird.tscn
-res://Scenes/enemy.tscn
-res://Scenes/enemy.gd
-res://Scenes/enemy_simple_bird.gd
+res://Scenes/wave_spawner.tscn
+res://Scenes/main.gd
+res://WaveSpawner.gd
+res://Scripts/enemy_spawn_info.gd
 res://Scenes/main.tscn
-res://Scenes/player.tscn
-res://Scenes/enemy_bomb.tscn
-res://Scenes/enemy_tanky_bird.tscn
-res://Scenes/enemy_speedy_bird.tscn
-res://Scenes/BirdSpawner.gd

@@ -1,4 +1,6 @@
 Timer
+PathFollow2D
+Path2D
 Node
 ProgressBar
 MarginContainer
@@ -10,8 +12,6 @@ CollisionShape2D
 Sprite2D
 CharacterBody2D
 Marker2D
-PathFollow2D
-Path2D
 Camera2D
 TouchScreenButton
 Label

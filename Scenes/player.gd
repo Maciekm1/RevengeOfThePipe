@@ -42,15 +42,9 @@ func _input(event):
 		smashing_invul = true
 
 func _process(delta):
-	#Clamp Position
-	position.y = clamp(position.y,lower_pipe_offset, screen_size.y + upper_pipe_offset)
 	
-	if(position.y < lower_pipe_offset):
-		velocity.y += gravity * delta
-	elif(position.y > screen_size.y + upper_pipe_offset - 1):
-		velocity.y = 0
-	else:
-		velocity.y += gravity * delta
+	#Magic Function
+	clamp_pipe_position_to_screen(delta)
 		
 	if jump_pressed:
 #		velocity.y = jump_speed
@@ -88,6 +82,19 @@ func execute_smash():
 	
 	smashing = false
 
+func clamp_pipe_position_to_screen(delta):
+	#Clamp Position - No idea how it works >.< - it just does.
+	#Takes into account the canvas and viewport scaling (app is set to expand) to work on multiple screen resolutions
+	var diff = get_viewport_transform()[2].y * 1/get_viewport_transform().y.y
+	screen_size = get_viewport_rect().size
+	position.y = clamp(position.y,lower_pipe_offset - diff, screen_size.y+ upper_pipe_offset - diff)
+	
+	if(position.y < lower_pipe_offset):
+		velocity.y += gravity * delta
+	elif(position.y > screen_size.y + upper_pipe_offset - diff - 1):
+		velocity.y = 0
+	else:
+		velocity.y += gravity * delta
 
 func _on_lower_area_2d_body_entered(body):
 	if "take_damage" in body:

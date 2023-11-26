@@ -10,14 +10,12 @@ var game_time: float = 0
 @onready var score_label = $UI/LabelMarginContainer/Score
 
 func _ready():
+	#Init
+	Globals.camera = $Camera2D
+	player_health_bar_setup()
+	
 	$BirdSpawner.connect("spawn_enemy", spawn_enemy)
-	$Player.connect("on_health_change", update_health_bar_ui)
-	$Player.connect("on_death", reset)
-	
-	# health Bar For Player
-	$UI/MarginContainer/HealthBar.max_value = $Player.get_node("HealthComponent").max_health
-	update_health_bar_ui($Player.get_node("HealthComponent").max_health)
-	
+
 func _process(delta):
 	game_time += delta
 	
@@ -36,6 +34,14 @@ func spawn_enemy(enemy: PackedScene, pos: Vector2):
 	
 func on_enemy_death(score_gain: int):
 	score += score_gain
+	
+func player_health_bar_setup():
+	$Player.connect("on_health_change", update_health_bar_ui)
+	$Player.connect("on_death", reset)
+	
+	# health Bar For Player
+	$UI/MarginContainer/HealthBar.max_value = $Player.get_node("HealthComponent").max_health
+	update_health_bar_ui($Player.get_node("HealthComponent").max_health)
 	
 func update_health_bar_ui(new_health):
 	var tween = create_tween()
