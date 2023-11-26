@@ -18,26 +18,26 @@ min_wave_req = 0
 script = ExtResource("3_7ysfp")
 enemy = ExtResource("4_adx4p")
 spawn_weight = 1
-spawn_cost = 1
-min_wave_req = 0
+spawn_cost = 0
+min_wave_req = 2
 
 [sub_resource type="Resource" id="Resource_iho4i"]
 script = ExtResource("3_7ysfp")
 enemy = ExtResource("5_tw5jd")
 spawn_weight = 1
-spawn_cost = 1
-min_wave_req = 0
+spawn_cost = 3
+min_wave_req = 4
 
 [sub_resource type="Resource" id="Resource_eeowc"]
 script = ExtResource("3_7ysfp")
 enemy = ExtResource("6_4p18k")
 spawn_weight = 1
-spawn_cost = 1
-min_wave_req = 0
+spawn_cost = 4
+min_wave_req = 5
 
 [sub_resource type="Curve2D" id="Curve2D_dxpy7"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -1000, 0, 0, 0, 0, 0, 1000)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -800, 0, 0, 0, 0, 0, 800)
 }
 point_count = 2
 
@@ -49,7 +49,7 @@ enemy_spawn_infos = Array[ExtResource("3_7ysfp")]([SubResource("Resource_m4hta")
 curve = SubResource("Curve2D_dxpy7")
 
 [node name="EnemySpawner" type="PathFollow2D" parent="Path2D"]
-position = Vector2(0, -1000)
+position = Vector2(0, -800)
 rotation = 1.5708
 
 [node name="SpawnCdTimer" type="Timer" parent="."]

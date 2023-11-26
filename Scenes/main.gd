@@ -14,14 +14,17 @@ func _ready():
 	Globals.camera = $Camera2D
 	player_health_bar_setup()
 	
-	$BirdSpawner.connect("spawn_enemy", spawn_enemy)
-
+	$WaveSpawner.connect("spawn_enemy", spawn_enemy)
+	$WaveSpawner.connect("wave_started", update_wave_ui)
+	$WaveSpawner.connect("wave_credits_changed", update_wave_credits)
+	
 func _process(delta):
 	game_time += delta
 	
 func reset():
 	score = 0
 	game_time = 0
+	$WaveSpawner.reset()
 	
 func spawn_enemy(enemy: PackedScene, pos: Vector2):
 	var new_Enemy: Enemy = enemy.instantiate() as Enemy
@@ -40,9 +43,15 @@ func player_health_bar_setup():
 	$Player.connect("on_death", reset)
 	
 	# health Bar For Player
-	$UI/MarginContainer/HealthBar.max_value = $Player.get_node("HealthComponent").max_health
+	$UI/HealthBarMargin/HealthBar.max_value = $Player.get_node("HealthComponent").max_health
 	update_health_bar_ui($Player.get_node("HealthComponent").max_health)
 	
 func update_health_bar_ui(new_health):
 	var tween = create_tween()
-	tween.tween_property($UI/MarginContainer/HealthBar, "value", new_health, 0.1)
+	tween.tween_property($UI/HealthBarMargin/HealthBar, "value", new_health, 0.1)
+	
+func update_wave_ui(wave):
+	$UI/WaveInfoMargin/GridContainer/CurrentWaveLabel.text = str(wave)
+	
+func update_wave_credits(credits):
+	$UI/WaveInfoMargin/GridContainer/EnemiesLabel.text = str(credits)

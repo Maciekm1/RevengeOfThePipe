@@ -1,44 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://deoabbasbdx6h"]
+[gd_scene load_steps=5 format=3 uid="uid://deoabbasbdx6h"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
-[ext_resource type="Script" path="res://Scenes/BirdSpawner.gd" id="2_ncqxr"]
+[ext_resource type="PackedScene" uid="uid://c8ignihjhafx7" path="res://Scenes/wave_spawner.tscn" id="2_sm002"]
 [ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="4_8yo7f"]
-[ext_resource type="PackedScene" uid="uid://dyt7ynyyr7ef1" path="res://Scenes/enemy_simple_bird.tscn" id="4_t5dcg"]
-[ext_resource type="PackedScene" uid="uid://dc2yf53dy5yb" path="res://Scenes/enemy_tanky_bird.tscn" id="5_3plhk"]
-[ext_resource type="PackedScene" uid="uid://cemco87sdcl8d" path="res://Scenes/enemy_speedy_bird.tscn" id="6_ygpt8"]
-[ext_resource type="PackedScene" uid="uid://dfys04kfweb4q" path="res://Scenes/enemy_bomb.tscn" id="7_y0bvl"]
-
-[sub_resource type="Curve2D" id="Curve2D_eobmg"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -120, 100, 0, 0, 0, 0, -120, 1500)
-}
-point_count = 2
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7u3kn")
 
-[node name="BirdSpawner" type="Node2D" parent="."]
-script = ExtResource("2_ncqxr")
-enemy_to_spawn = Array[PackedScene]([ExtResource("7_y0bvl"), ExtResource("4_t5dcg"), ExtResource("5_3plhk"), ExtResource("6_ygpt8")])
-spawn_time_decrease_every_spawn = 0.05
-
-[node name="SpawnPointsPath" type="Path2D" parent="BirdSpawner"]
-position = Vector2(0, 179)
-curve = SubResource("Curve2D_eobmg")
-
-[node name="SpawnPoint" type="PathFollow2D" parent="BirdSpawner/SpawnPointsPath"]
-position = Vector2(-120, 100)
-rotation = 1.5708
-
-[node name="enemySpawnTimer" type="Timer" parent="BirdSpawner"]
-autostart = true
+[node name="WaveSpawner" parent="." instance=ExtResource("2_sm002")]
+position = Vector2(-200, 960)
 
 [node name="Player" parent="." instance=ExtResource("1_uuu27")]
 position = Vector2(840, 620)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(540, 960)
+metadata/_edit_lock_ = true
 
 [node name="RightTap" type="TouchScreenButton" parent="Camera2D"]
 modulate = Color(1, 1, 1, 0)
@@ -80,7 +58,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="HealthBarMargin" type="MarginContainer" parent="UI"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -92,7 +70,7 @@ theme_override_constants/margin_left = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="HealthBar" type="ProgressBar" parent="UI/MarginContainer"]
+[node name="HealthBar" type="ProgressBar" parent="UI/HealthBarMargin"]
 modulate = Color(0, 1, 0.2, 1)
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -100,4 +78,34 @@ step = 1.0
 allow_greater = true
 show_percentage = false
 
-[connection signal="timeout" from="BirdSpawner/enemySpawnTimer" to="BirdSpawner" method="_on_enemy_spawn_timer_timeout"]
+[node name="WaveInfoMargin" type="MarginContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+
+[node name="GridContainer" type="GridContainer" parent="UI/WaveInfoMargin"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+columns = 2
+
+[node name="WaveLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Current Wave: "
+
+[node name="CurrentWaveLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "1
+"
+
+[node name="EnemiesRemainingLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Enemies: "
+
+[node name="EnemiesLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "0"
