@@ -7,7 +7,7 @@ var score: int = 0:
 var game_time: float = 0
 
 @onready var player: Player = $Player
-@onready var score_label = $UI/LabelMarginContainer/Score
+@onready var score_label = %Score
 
 func _ready():
 	#Init
@@ -51,7 +51,6 @@ func update_health_bar_ui(new_health):
 	tween.tween_property($UI/HealthBarMargin/HealthBar, "value", new_health, 0.1)
 	
 func update_wave_ui(wave):
-	$UI/WaveInfoMargin/GridContainer/CurrentWaveLabel.text = str(wave)
-	
+	%CurrentWaveLabel.text = str(wave)
 func update_wave_credits(credits):
-	$UI/WaveInfoMargin/GridContainer/EnemiesLabel.text = str(credits)
+	%EnemiesLabel.text = str(credits)

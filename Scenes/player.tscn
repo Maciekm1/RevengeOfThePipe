@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://db4trvtd8vv77"]
+[gd_scene load_steps=7 format=3 uid="uid://db4trvtd8vv77"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_nuqim"]
 [ext_resource type="Texture2D" uid="uid://b1lplw76w00vh" path="res://Assets/Art/PipeHorizontalNoHighlight.png" id="2_1b576"]
 [ext_resource type="Texture2D" uid="uid://cjqwe1i4jlqgc" path="res://Assets/Art/PipeVertticalSVG.png" id="2_dc83f"]
-[ext_resource type="Script" path="res://HealthComponent.gd" id="2_kfsep"]
-[ext_resource type="Texture2D" uid="uid://d31vl3s33yut" path="res://Assets/Art/PipeHorizontal.png" id="3_gi2c8"]
+[ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="2_kfsep"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fvnj8"]
 radius = 57.0
@@ -28,7 +27,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="UpperPipeV" type="Sprite2D" parent="UpperPipe"]
-modulate = Color(1, 1, 1, 0.607843)
+modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(-3, -1361)
 texture = ExtResource("2_dc83f")
 
@@ -56,7 +55,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="LowerPipeV" type="Sprite2D" parent="LowerPipe"]
-modulate = Color(1, 1, 1, 0.607843)
+modulate = Color(1, 1, 1, 0.392157)
 position = Vector2(3, -1360)
 scale = Vector2(-1, 1)
 texture = ExtResource("2_dc83f")
@@ -64,7 +63,7 @@ texture = ExtResource("2_dc83f")
 [node name="LowerPipeH" type="Sprite2D" parent="LowerPipe"]
 position = Vector2(0, -55)
 scale = Vector2(-1, -1)
-texture = ExtResource("3_gi2c8")
+texture = ExtResource("2_1b576")
 
 [node name="LowerArea2D" type="Area2D" parent="LowerPipe"]
 position = Vector2(0, 150)

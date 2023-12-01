@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c8ignihjhafx7"]
 
-[ext_resource type="Script" path="res://WaveSpawner.gd" id="1_5w03s"]
+[ext_resource type="Script" path="res://Scripts/WaveSpawner.gd" id="1_5w03s"]
 [ext_resource type="PackedScene" uid="uid://dyt7ynyyr7ef1" path="res://Scenes/enemy_simple_bird.tscn" id="2_juny5"]
 [ext_resource type="Script" path="res://Scripts/enemy_spawn_info.gd" id="3_7ysfp"]
 [ext_resource type="PackedScene" uid="uid://dfys04kfweb4q" path="res://Scenes/enemy_bomb.tscn" id="4_adx4p"]
@@ -10,29 +10,29 @@
 [sub_resource type="Resource" id="Resource_m4hta"]
 script = ExtResource("3_7ysfp")
 enemy = ExtResource("2_juny5")
-spawn_weight = 1
+spawn_weight = 2.0
 spawn_cost = 1
 min_wave_req = 0
 
 [sub_resource type="Resource" id="Resource_0xi7c"]
 script = ExtResource("3_7ysfp")
 enemy = ExtResource("4_adx4p")
-spawn_weight = 1
+spawn_weight = 1.5
 spawn_cost = 0
 min_wave_req = 2
 
 [sub_resource type="Resource" id="Resource_iho4i"]
 script = ExtResource("3_7ysfp")
 enemy = ExtResource("5_tw5jd")
-spawn_weight = 1
-spawn_cost = 3
+spawn_weight = 1.5
+spawn_cost = 2
 min_wave_req = 4
 
 [sub_resource type="Resource" id="Resource_eeowc"]
 script = ExtResource("3_7ysfp")
 enemy = ExtResource("6_4p18k")
-spawn_weight = 1
-spawn_cost = 4
+spawn_weight = 1.5
+spawn_cost = 3
 min_wave_req = 5
 
 [sub_resource type="Curve2D" id="Curve2D_dxpy7"]
@@ -44,6 +44,7 @@ point_count = 2
 [node name="WaveSpawner" type="Node2D"]
 script = ExtResource("1_5w03s")
 enemy_spawn_infos = Array[ExtResource("3_7ysfp")]([SubResource("Resource_m4hta"), SubResource("Resource_0xi7c"), SubResource("Resource_iho4i"), SubResource("Resource_eeowc")])
+wait_time_bwtn_waves = 5.0
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_dxpy7")

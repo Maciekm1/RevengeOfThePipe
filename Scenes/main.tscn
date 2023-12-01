@@ -1,15 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://deoabbasbdx6h"]
+[gd_scene load_steps=14 format=3 uid="uid://deoabbasbdx6h"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
 [ext_resource type="PackedScene" uid="uid://c8ignihjhafx7" path="res://Scenes/wave_spawner.tscn" id="2_sm002"]
 [ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="4_8yo7f"]
+[ext_resource type="FontFile" uid="uid://dyntny84l6w1e" path="res://Assets/Fonts/Alata-Regular.ttf" id="5_8yf6i"]
+[ext_resource type="Texture2D" uid="uid://sp5rlhveke5j" path="res://Assets/Art/UI/icon_white_setting_l.png" id="5_dftes"]
+[ext_resource type="Texture2D" uid="uid://3lqnp6yqevad" path="res://Assets/Art/UI/btn_circle_01_green.png" id="5_ynu78"]
+[ext_resource type="Texture2D" uid="uid://b4ysqhhknaoq0" path="res://Assets/Art/UI/Slider/slider_edgetype_01_frame_front.png" id="8_24mxl"]
+[ext_resource type="Texture2D" uid="uid://c8qq7478emoie" path="res://Assets/Art/UI/Slider/slider_edgetype_01_fill.png" id="9_f5dnq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4wsj"]
+texture = ExtResource("5_ynu78")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6xss"]
+texture = ExtResource("5_ynu78")
+modulate_color = Color(0.92549, 0.92549, 0.92549, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x1j3l"]
+texture = ExtResource("5_ynu78")
+modulate_color = Color(0.776471, 0.776471, 0.776471, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ux2lb"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7u3kn")
 
+[node name="BG_Layer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="BG_Colour" type="ColorRect" parent="BG_Layer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.439216, 0.682353, 0.701961, 1)
+
 [node name="WaveSpawner" parent="." instance=ExtResource("2_sm002")]
 position = Vector2(-200, 960)
+spawn_time_min = 1.1
+spawn_time_max = 1.6
+wait_time_bwtn_waves = 6.0
+wave_loss_on_reset = 0
 
 [node name="Player" parent="." instance=ExtResource("1_uuu27")]
 position = Vector2(840, 620)
@@ -39,18 +72,81 @@ points = PackedVector2Array(1200, 400, 1200, 1520)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="LabelMarginContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+[node name="TopBar" type="HBoxContainer" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 162.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 50
+alignment = 1
 
-[node name="Score" type="Label" parent="UI/LabelMarginContainer"]
+[node name="SettingsMargin" type="MarginContainer" parent="UI/TopBar"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 25
+
+[node name="SettingsButton" type="Button" parent="UI/TopBar/SettingsMargin"]
+custom_minimum_size = Vector2(148, 155)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxTexture_e4wsj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g6xss")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x1j3l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
+icon = ExtResource("5_dftes")
+icon_alignment = 1
+
+[node name="WaveInfoMargin" type="MarginContainer" parent="UI/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 40
+
+[node name="GridContainer" type="GridContainer" parent="UI/TopBar/WaveInfoMargin"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+columns = 2
+
+[node name="WaveLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8yf6i")
+theme_override_font_sizes/font_size = 36
+text = "Current Wave: "
+
+[node name="CurrentWaveLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8yf6i")
+theme_override_font_sizes/font_size = 36
+text = "1
+"
+
+[node name="EnemiesRemainingLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8yf6i")
+theme_override_font_sizes/font_size = 36
+text = "Enemies: "
+
+[node name="EnemiesLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8yf6i")
+theme_override_font_sizes/font_size = 36
+text = "0"
+
+[node name="ScoreMargin" type="MarginContainer" parent="UI/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Score" type="Label" parent="UI/TopBar/ScoreMargin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_8yf6i")
 theme_override_font_sizes/font_size = 72
 text = "0
 "
@@ -78,34 +174,38 @@ step = 1.0
 allow_greater = true
 show_percentage = false
 
-[node name="WaveInfoMargin" type="MarginContainer" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 50
+[node name="WaveProgressBarMargin" type="MarginContainer" parent="UI"]
+custom_minimum_size = Vector2(350, 40)
+anchors_preset = -1
+anchor_left = 0.337963
+anchor_right = 0.662037
+anchor_bottom = 0.0208333
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="UI/WaveInfoMargin"]
+[node name="WaveProgressOverlay" type="NinePatchRect" parent="UI/WaveProgressBarMargin"]
 layout_mode = 2
-theme_override_constants/h_separation = 25
-columns = 2
+texture = ExtResource("8_24mxl")
+patch_margin_left = 30
+patch_margin_right = 30
 
-[node name="WaveLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Current Wave: "
+[node name="MarginContainer" type="MarginContainer" parent="UI/WaveProgressBarMargin/WaveProgressOverlay"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
 
-[node name="CurrentWaveLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/WaveProgressBarMargin/WaveProgressOverlay/MarginContainer"]
+show_behind_parent = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "1
-"
-
-[node name="EnemiesRemainingLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Enemies: "
-
-[node name="EnemiesLabel" type="Label" parent="UI/WaveInfoMargin/GridContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "0"
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("9_f5dnq")

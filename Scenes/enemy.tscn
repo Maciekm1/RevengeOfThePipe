@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdvrwf87xdexm"]
 
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_rjxt8"]
-[ext_resource type="Script" path="res://HealthComponent.gd" id="2_towc4"]
+[ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="2_towc4"]
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health")]
 collision_layer = 2
