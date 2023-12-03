@@ -31,16 +31,6 @@ func _ready():
 func health_change(current_health):
 	on_health_change.emit(current_health)
 
-func _input(event):
-	if event.is_action_pressed("player_jump"):
-		jump_pressed = true
-	elif event.is_action_released("player_jump"):
-		jump_pressed = false
-		
-	if event.is_action_pressed("smash"):
-		smash_pressed = true
-		smashing_invul = true
-
 func _process(delta):
 	
 	#Magic Function
@@ -56,6 +46,15 @@ func _process(delta):
 			smashing = true
 			execute_smash()
 		smash_pressed = false
+		
+	if Input.is_action_pressed("player_jump"):
+		jump_pressed = true
+	elif Input.is_action_just_released("player_jump"):
+		jump_pressed = false
+		
+	if Input.is_action_pressed("smash"):
+		smash_pressed = true
+		smashing_invul = true
 	
 	move_and_slide()
 	

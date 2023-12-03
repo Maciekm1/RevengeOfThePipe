@@ -1,3 +1,5 @@
+Button
+Control
 Node
 MarginContainer
 HBoxContainer
@@ -5,10 +7,8 @@ VBoxContainer
 TextureRect
 NinePatchRect
 TextureProgressBar
-Button
 ColorRect
 CanvasLayer
 DirectionalLight2D
 Label
 GridContainer
-BoxContainer
