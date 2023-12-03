@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Scenes/enemy_simple_bird.gd" id="2_4h1u1"]
 [ext_resource type="Texture2D" uid="uid://byyicn7457ys1" path="res://Assets/Art/flappyBirb.png" id="2_keo41"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_12lh6"]
-radius = 35.0
-height = 108.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5pio"]
+radius = 47.0
+height = 142.0
 
 [node name="EnemySimpleBird" instance=ExtResource("1_mafni")]
 script = ExtResource("2_4h1u1")
@@ -24,10 +24,9 @@ health_bar = NodePath("../MarginContainer/ProgressBar")
 texture = ExtResource("2_keo41")
 
 [node name="CollisionShape2D" parent="." index="2"]
-visible = false
 position = Vector2(3, 8)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_12lh6")
+shape = SubResource("CapsuleShape2D_o5pio")
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="3"]
 anchors_preset = 5

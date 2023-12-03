@@ -13,9 +13,9 @@ var current_wave_credits: int = 0:
 var is_spawning: bool = false # Spawn between waves
 
 # Signals
-signal wave_started(wave)
+signal wave_started(wave, max_wave_credits)
 signal wave_credits_changed(credits)
-signal spawn_enemy(enemy: PackedScene, pos: Vector2)
+signal spawn_enemy(enemy: EnemySpawnInfo, pos: Vector2)
 
 # UNUSED
 signal wave_complete
@@ -44,7 +44,7 @@ func _process(delta):
 func start_wave(wave: int):
 	current_wave = wave
 	current_wave_credits = get_wave_credits()
-	wave_started.emit(current_wave)
+	wave_started.emit(current_wave, current_wave_credits)
 	can_spawn_enemy = true
 	is_spawning = true
 
@@ -58,7 +58,7 @@ func spawn_wave_enemy():
 		
 		var t = randf()
 		$Path2D/EnemySpawner.progress_ratio = t
-		spawn_enemy.emit(enemy.enemy, $Path2D/EnemySpawner.global_position)
+		spawn_enemy.emit(enemy, $Path2D/EnemySpawner.global_position)
 		
 		can_spawn_enemy = false
 		$SpawnCdTimer.wait_time = randf_range(spawn_time_min, spawn_time_max)

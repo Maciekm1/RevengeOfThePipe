@@ -2,4 +2,12 @@ res://Scenes/main.tscn
 res://Scenes/player.tscn
 res://Scenes/wave_spawner.tscn
 res://Scenes/enemy_simple_bird.tscn
+res://Scenes/enemy_tanky_bird.tscn
+res://Scenes/enemy_speedy_bird.tscn
+res://Scenes/enemy.tscn
+res://Scenes/enemy_bomb.tscn
+res://Scenes/object_pooler.tscn
+res://Scenes/enemy.gd
+res://Scenes/enemy_simple_bird.gd
+res://Scenes/player.gd
 res://Scenes/main.gd

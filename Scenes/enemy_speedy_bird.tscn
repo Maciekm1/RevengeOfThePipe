@@ -1,20 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cemco87sdcl8d"]
+[gd_scene load_steps=4 format=3 uid="uid://cemco87sdcl8d"]
 
 [ext_resource type="PackedScene" uid="uid://dyt7ynyyr7ef1" path="res://Scenes/enemy_simple_bird.tscn" id="1_c8ttq"]
+[ext_resource type="Texture2D" uid="uid://kr3xihcebc0r" path="res://Assets/Art/SpeedyBird.svg" id="2_irc6j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ixaqh"]
+radius = 24.0
+height = 154.0
 
 [node name="EnemySpeedyBird" instance=ExtResource("1_c8ttq")]
-jump_strength_max = 300.0
-jump_strength_min = 150.0
+jump_strength_max = 700.0
+jump_strength_min = 500.0
+jump_cd = 1.0
 hurt_speed_modifier = 3.0
-move_speed = 450.0
+move_speed = 550.0
 points_given = 5
 
 [node name="Sprite2D" parent="." index="1"]
-modulate = Color(0.219608, 1, 1, 1)
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_irc6j")
 
 [node name="CollisionShape2D" parent="." index="2"]
-visible = true
+position = Vector2(16, 3)
+shape = SubResource("CapsuleShape2D_ixaqh")
 
 [node name="MarginContainer" parent="." index="3"]
 theme_override_constants/margin_top = 60

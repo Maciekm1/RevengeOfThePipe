@@ -13,6 +13,7 @@ enemy = ExtResource("2_juny5")
 spawn_weight = 2.0
 spawn_cost = 1
 min_wave_req = 0
+object_pool = NodePath("")
 
 [sub_resource type="Resource" id="Resource_0xi7c"]
 script = ExtResource("3_7ysfp")
@@ -20,6 +21,7 @@ enemy = ExtResource("4_adx4p")
 spawn_weight = 1.5
 spawn_cost = 0
 min_wave_req = 2
+object_pool = NodePath("")
 
 [sub_resource type="Resource" id="Resource_iho4i"]
 script = ExtResource("3_7ysfp")
@@ -27,6 +29,7 @@ enemy = ExtResource("5_tw5jd")
 spawn_weight = 1.5
 spawn_cost = 2
 min_wave_req = 4
+object_pool = NodePath("")
 
 [sub_resource type="Resource" id="Resource_eeowc"]
 script = ExtResource("3_7ysfp")
@@ -34,6 +37,7 @@ enemy = ExtResource("6_4p18k")
 spawn_weight = 1.5
 spawn_cost = 3
 min_wave_req = 5
+object_pool = NodePath("")
 
 [sub_resource type="Curve2D" id="Curve2D_dxpy7"]
 _data = {

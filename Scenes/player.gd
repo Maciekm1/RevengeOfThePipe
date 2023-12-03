@@ -99,14 +99,16 @@ func clamp_pipe_position_to_screen(delta):
 func _on_lower_area_2d_body_entered(body):
 	if "take_damage" in body:
 		body.take_damage(player_damage)
-	if "damage_dealt" in body:
+	if "damage_dealt" in body and not body.has_dealt_damage:
 		take_damage(body.damage_dealt)
+		body.has_dealt_damage = true
 		
 func _on_upper_area_2d_body_entered(body):
 	if "take_damage" in body:
 		body.take_damage(player_damage)
-	if "damage_dealt" in body:
+	if "damage_dealt" in body and not body.has_dealt_damage:
 		take_damage(body.damage_dealt)
+		body.has_dealt_damage = true
 		
 		
 func death():

@@ -34,6 +34,7 @@ func move_towards_target(delta):
 		velocity.x = -direction_x * move_speed * hurt_speed_modifier
 	else:
 		velocity = Vector2.ZERO
+		is_active = false
 
 func jump():
 	can_jump = false
@@ -45,4 +46,8 @@ func jump():
 
 func _on_jump_cd_timer_timeout():
 	can_jump = true
-
+	
+func on_is_active_change(v: bool):
+	super.on_is_active_change(v)
+	if($HealthComponent.max_health != 1):
+		$MarginContainer/ProgressBar.visible = v

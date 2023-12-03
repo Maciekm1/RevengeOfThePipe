@@ -5,3 +5,4 @@ class_name EnemySpawnInfo
 @export var spawn_weight: float
 @export var spawn_cost: int
 @export var min_wave_req: int
+@export var object_pool: NodePath

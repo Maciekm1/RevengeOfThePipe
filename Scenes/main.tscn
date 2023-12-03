@@ -1,14 +1,53 @@
-[gd_scene load_steps=14 format=3 uid="uid://deoabbasbdx6h"]
+[gd_scene load_steps=25 format=3 uid="uid://deoabbasbdx6h"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
 [ext_resource type="PackedScene" uid="uid://c8ignihjhafx7" path="res://Scenes/wave_spawner.tscn" id="2_sm002"]
+[ext_resource type="Texture2D" uid="uid://dm2qxj8mb5rym" path="res://Assets/Art/BG.svg" id="2_wstrl"]
 [ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="4_8yo7f"]
 [ext_resource type="FontFile" uid="uid://dyntny84l6w1e" path="res://Assets/Fonts/Alata-Regular.ttf" id="5_8yf6i"]
 [ext_resource type="Texture2D" uid="uid://sp5rlhveke5j" path="res://Assets/Art/UI/icon_white_setting_l.png" id="5_dftes"]
+[ext_resource type="Script" path="res://Scripts/enemy_spawn_info.gd" id="5_p7kvq"]
 [ext_resource type="Texture2D" uid="uid://3lqnp6yqevad" path="res://Assets/Art/UI/btn_circle_01_green.png" id="5_ynu78"]
 [ext_resource type="Texture2D" uid="uid://b4ysqhhknaoq0" path="res://Assets/Art/UI/Slider/slider_edgetype_01_frame_front.png" id="8_24mxl"]
 [ext_resource type="Texture2D" uid="uid://c8qq7478emoie" path="res://Assets/Art/UI/Slider/slider_edgetype_01_fill.png" id="9_f5dnq"]
+[ext_resource type="PackedScene" uid="uid://b3wb8q781bkta" path="res://Scenes/object_pooler.tscn" id="11_x0nc1"]
+[ext_resource type="PackedScene" uid="uid://dyt7ynyyr7ef1" path="res://Scenes/enemy_simple_bird.tscn" id="12_pih2v"]
+[ext_resource type="PackedScene" uid="uid://dc2yf53dy5yb" path="res://Scenes/enemy_tanky_bird.tscn" id="13_fwvbh"]
+[ext_resource type="PackedScene" uid="uid://cemco87sdcl8d" path="res://Scenes/enemy_speedy_bird.tscn" id="14_t2ccf"]
+[ext_resource type="PackedScene" uid="uid://dfys04kfweb4q" path="res://Scenes/enemy_bomb.tscn" id="15_0scqv"]
+
+[sub_resource type="Resource" id="Resource_01o77"]
+script = ExtResource("5_p7kvq")
+enemy = ExtResource("12_pih2v")
+spawn_weight = 2.0
+spawn_cost = 1
+min_wave_req = 0
+object_pool = NodePath("../ObjectPools/SimpleBirdPool")
+
+[sub_resource type="Resource" id="Resource_sq4tf"]
+script = ExtResource("5_p7kvq")
+enemy = ExtResource("15_0scqv")
+spawn_weight = 1.5
+spawn_cost = 0
+min_wave_req = 2
+object_pool = NodePath("../ObjectPools/BombPool")
+
+[sub_resource type="Resource" id="Resource_igh8u"]
+script = ExtResource("5_p7kvq")
+enemy = ExtResource("13_fwvbh")
+spawn_weight = 1.5
+spawn_cost = 2
+min_wave_req = 4
+object_pool = NodePath("../ObjectPools/TankyBirdPool")
+
+[sub_resource type="Resource" id="Resource_y3qjy"]
+script = ExtResource("5_p7kvq")
+enemy = ExtResource("14_t2ccf")
+spawn_weight = 1.5
+spawn_cost = 3
+min_wave_req = 5
+object_pool = NodePath("../ObjectPools/SpeedyBirdPool")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4wsj"]
 texture = ExtResource("5_ynu78")
@@ -29,16 +68,17 @@ script = ExtResource("1_7u3kn")
 [node name="BG_Layer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="BG_Colour" type="ColorRect" parent="BG_Layer"]
+[node name="TextureRect" type="TextureRect" parent="BG_Layer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.439216, 0.682353, 0.701961, 1)
+texture = ExtResource("2_wstrl")
 
 [node name="WaveSpawner" parent="." instance=ExtResource("2_sm002")]
-position = Vector2(-200, 960)
+position = Vector2(-358, 960)
+enemy_spawn_infos = Array[ExtResource("5_p7kvq")]([SubResource("Resource_01o77"), SubResource("Resource_sq4tf"), SubResource("Resource_igh8u"), SubResource("Resource_y3qjy")])
 spawn_time_min = 1.1
 spawn_time_max = 1.6
 wait_time_bwtn_waves = 6.0
@@ -72,23 +112,26 @@ points = PackedVector2Array(1200, 400, 1200, 1520)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="TopBar" type="HBoxContainer" parent="UI"]
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 162.0
 grow_horizontal = 2
+theme_override_constants/margin_top = 50
+
+[node name="TopBar" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
 alignment = 1
 
-[node name="SettingsMargin" type="MarginContainer" parent="UI/TopBar"]
+[node name="SettingsMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
-theme_override_constants/margin_left = 15
+theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 25
 
-[node name="SettingsButton" type="Button" parent="UI/TopBar/SettingsMargin"]
+[node name="SettingsButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin"]
 custom_minimum_size = Vector2(148, 155)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -100,24 +143,26 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
 icon = ExtResource("5_dftes")
 icon_alignment = 1
 
-[node name="WaveInfoMargin" type="MarginContainer" parent="UI/TopBar"]
+[node name="WaveInfoMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 40
 
-[node name="GridContainer" type="GridContainer" parent="UI/TopBar/WaveInfoMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin"]
 layout_mode = 2
-theme_override_constants/h_separation = 25
-columns = 2
 
-[node name="WaveLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_8yf6i")
 theme_override_font_sizes/font_size = 36
 text = "Current Wave: "
 
-[node name="CurrentWaveLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+[node name="CurrentWaveLabel" type="Label" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_8yf6i")
@@ -125,24 +170,45 @@ theme_override_font_sizes/font_size = 36
 text = "1
 "
 
-[node name="EnemiesRemainingLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+[node name="WaveProgressBarMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer"]
+custom_minimum_size = Vector2(350, 40)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_8yf6i")
-theme_override_font_sizes/font_size = 36
-text = "Enemies: "
+metadata/_edit_use_anchors_ = true
 
-[node name="EnemiesLabel" type="Label" parent="UI/TopBar/WaveInfoMargin/GridContainer"]
+[node name="WaveProgressOverlay" type="NinePatchRect" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin"]
+layout_mode = 2
+texture = ExtResource("8_24mxl")
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin/WaveProgressOverlay"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="WaveProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin/WaveProgressOverlay/MarginContainer"]
 unique_name_in_owner = true
+show_behind_parent = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_8yf6i")
-theme_override_font_sizes/font_size = 36
-text = "0"
+max_value = 8.0
+step = 0.05
+nine_patch_stretch = true
+texture_progress = ExtResource("9_f5dnq")
 
-[node name="ScoreMargin" type="MarginContainer" parent="UI/TopBar"]
+[node name="ScoreMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Score" type="Label" parent="UI/TopBar/ScoreMargin"]
+[node name="Score" type="Label" parent="UI/MarginContainer/TopBar/ScoreMargin"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -174,38 +240,20 @@ step = 1.0
 allow_greater = true
 show_percentage = false
 
-[node name="WaveProgressBarMargin" type="MarginContainer" parent="UI"]
-custom_minimum_size = Vector2(350, 40)
-anchors_preset = -1
-anchor_left = 0.337963
-anchor_right = 0.662037
-anchor_bottom = 0.0208333
-grow_horizontal = 2
-metadata/_edit_use_anchors_ = true
+[node name="ObjectPools" type="Node" parent="."]
 
-[node name="WaveProgressOverlay" type="NinePatchRect" parent="UI/WaveProgressBarMargin"]
-layout_mode = 2
-texture = ExtResource("8_24mxl")
-patch_margin_left = 30
-patch_margin_right = 30
+[node name="SimpleBirdPool" parent="ObjectPools" instance=ExtResource("11_x0nc1")]
+object = ExtResource("12_pih2v")
+start_pool_size = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/WaveProgressBarMargin/WaveProgressOverlay"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-metadata/_edit_lock_ = true
+[node name="TankyBirdPool" parent="ObjectPools" instance=ExtResource("11_x0nc1")]
+object = ExtResource("13_fwvbh")
+start_pool_size = 5
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/WaveProgressBarMargin/WaveProgressOverlay/MarginContainer"]
-show_behind_parent = true
-layout_mode = 2
-value = 100.0
-nine_patch_stretch = true
-texture_progress = ExtResource("9_f5dnq")
+[node name="SpeedyBirdPool" parent="ObjectPools" instance=ExtResource("11_x0nc1")]
+object = ExtResource("14_t2ccf")
+start_pool_size = 5
+
+[node name="BombPool" parent="ObjectPools" instance=ExtResource("11_x0nc1")]
+object = ExtResource("15_0scqv")
+start_pool_size = 5

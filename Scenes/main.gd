@@ -9,6 +9,8 @@ var game_time: float = 0
 @onready var player: Player = $Player
 @onready var score_label = %Score
 
+var max_wave_credits: int = 8
+
 func _ready():
 	#Init
 	Globals.camera = $Camera2D
@@ -26,14 +28,17 @@ func reset():
 	game_time = 0
 	$WaveSpawner.reset()
 	
-func spawn_enemy(enemy: PackedScene, pos: Vector2):
-	var new_Enemy: Enemy = enemy.instantiate() as Enemy
+func spawn_enemy(enemy: EnemySpawnInfo, pos: Vector2):
+	var new_Enemy: Enemy = get_node(str(enemy.object_pool).replace("../", "")).get_object_from_pool() as Enemy
 	new_Enemy.position = pos
+	new_Enemy.health.health = new_Enemy.health.max_health
 	
 	var t = randf()
 	new_Enemy.target = $Line2D.points[0].lerp($Line2D.points[1], t)
-	new_Enemy.connect("on_death", on_enemy_death)
-	add_child(new_Enemy)
+	if not new_Enemy.is_connected("on_death", on_enemy_death):
+		new_Enemy.connect("on_death", on_enemy_death)
+	new_Enemy.is_active = true
+	new_Enemy.has_dealt_damage = false
 	
 func on_enemy_death(score_gain: int):
 	score += score_gain
@@ -50,7 +55,11 @@ func update_health_bar_ui(new_health):
 	var tween = create_tween()
 	tween.tween_property($UI/HealthBarMargin/HealthBar, "value", new_health, 0.1)
 	
-func update_wave_ui(wave):
+func update_wave_ui(wave, max_credits):
 	%CurrentWaveLabel.text = str(wave)
+	%WaveProgressBar.max_value = max_credits
+	%WaveProgressBar.value = 0
+	max_wave_credits = max_credits
+	
 func update_wave_credits(credits):
-	%EnemiesLabel.text = str(credits)
+	create_tween().tween_property(%WaveProgressBar, 'value', max_wave_credits - credits, 1.5)
