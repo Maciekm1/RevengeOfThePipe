@@ -91,19 +91,6 @@ position = Vector2(840, 620)
 offset = Vector2(540, 960)
 metadata/_edit_lock_ = true
 
-[node name="RightTap" type="TouchScreenButton" parent="Camera2D"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(580, 0)
-scale = Vector2(500, 1920)
-texture_normal = ExtResource("4_8yo7f")
-action = "smash"
-
-[node name="LeftTap" type="TouchScreenButton" parent="Camera2D"]
-modulate = Color(1, 1, 1, 0)
-scale = Vector2(500, 1920)
-texture_normal = ExtResource("4_8yo7f")
-action = "player_jump"
-
 [node name="EnemyTarget" type="Marker2D" parent="."]
 position = Vector2(1243, 935)
 
@@ -239,6 +226,36 @@ layout_mode = 2
 step = 1.0
 allow_greater = true
 show_percentage = false
+
+[node name="LeftTapButton" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftTap" type="TouchScreenButton" parent="UI/LeftTapButton"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 245)
+scale = Vector2(500, 1675)
+texture_normal = ExtResource("4_8yo7f")
+action = "player_jump"
+
+[node name="RightTapButton" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="RightTap" type="TouchScreenButton" parent="UI/RightTapButton"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 1920)
+rotation = -3.14159
+scale = Vector2(500, 1920)
+texture_normal = ExtResource("4_8yo7f")
+action = "smash"
 
 [node name="ObjectPools" type="Node" parent="."]
 

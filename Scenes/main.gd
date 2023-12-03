@@ -11,6 +11,9 @@ var game_time: float = 0
 
 var max_wave_credits: int = 8
 
+@onready var left_tap = $UI/LeftTapButton/LeftTap
+@onready var right_tap = $UI/RightTapButton/RightTap
+
 func _ready():
 	#Init
 	Globals.camera = $Camera2D
@@ -21,6 +24,7 @@ func _ready():
 	$WaveSpawner.connect("wave_credits_changed", update_wave_credits)
 	
 func _process(delta):
+	resize_tap_buttons_to_screen()
 	game_time += delta
 	
 func reset():
@@ -63,3 +67,9 @@ func update_wave_ui(wave, max_credits):
 	
 func update_wave_credits(credits):
 	create_tween().tween_property(%WaveProgressBar, 'value', max_wave_credits - credits, 1.5)
+
+func resize_tap_buttons_to_screen():
+	var screen_size = get_viewport_rect().size
+	left_tap.scale = Vector2(screen_size.x/2, screen_size.y)
+	right_tap.scale = Vector2(screen_size.x/2, screen_size.y)
+	right_tap.position = Vector2(0, screen_size.y)
