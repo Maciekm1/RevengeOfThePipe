@@ -73,3 +73,7 @@ func resize_tap_buttons_to_screen():
 	left_tap.scale = Vector2(screen_size.x/2, screen_size.y)
 	right_tap.scale = Vector2(screen_size.x/2, screen_size.y)
 	right_tap.position = Vector2(0, screen_size.y)
+
+func pause():
+	get_tree().paused = not get_tree().paused
+	$UI/Pause.visible = not $UI/Pause.visible

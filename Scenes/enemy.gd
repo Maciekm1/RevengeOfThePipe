@@ -62,3 +62,7 @@ func on_is_active_change(v: bool):
 	$Sprite2D.visible = v
 	$CollisionShape2D.set_deferred("disabled", not v)
 	
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	velocity.y = 400 if position.y < 0 else -400
