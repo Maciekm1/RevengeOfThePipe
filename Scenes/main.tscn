@@ -100,6 +100,28 @@ points = PackedVector2Array(1200, 400, 1200, 1520)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="HealthBarMargin" type="MarginContainer" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="UI/HealthBarMargin"]
+modulate = Color(0, 1, 0.2, 1)
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+step = 1.0
+allow_greater = true
+show_percentage = false
+
 [node name="Pause" type="ColorRect" parent="UI"]
 visible = false
 anchors_preset = 15
@@ -107,7 +129,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.490196)
+color = Color(0.160784, 0.160784, 0.160784, 0.490196)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
@@ -220,7 +242,11 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 25
 
-[node name="SettingsButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/TopBar/SettingsMargin"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="PauseButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer"]
 process_mode = 3
 custom_minimum_size = Vector2(148, 155)
 layout_mode = 2
@@ -232,6 +258,36 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_g6xss")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_x1j3l")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
 icon = ExtResource("5_dftes")
+icon_alignment = 1
+
+[node name="ShopButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(148, 155)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_e4wsj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g6xss")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x1j3l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
+icon_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+custom_minimum_size = Vector2(148, 155)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_e4wsj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g6xss")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x1j3l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
 icon_alignment = 1
 
 [node name="WaveInfoMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
@@ -301,6 +357,8 @@ texture_progress = ExtResource("9_f5dnq")
 [node name="ScoreMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 45
 
 [node name="Score" type="Label" parent="UI/MarginContainer/TopBar/ScoreMargin"]
 unique_name_in_owner = true
@@ -313,28 +371,6 @@ text = "0
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="HealthBarMargin" type="MarginContainer" parent="UI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -127.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="HealthBar" type="ProgressBar" parent="UI/HealthBarMargin"]
-modulate = Color(0, 1, 0.2, 1)
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-step = 1.0
-allow_greater = true
-show_percentage = false
 
 [node name="LeftTapButton" type="Control" parent="UI"]
 layout_mode = 3
@@ -388,4 +424,4 @@ start_pool_size = 5
 object = ExtResource("15_0scqv")
 start_pool_size = 5
 
-[connection signal="button_down" from="UI/MarginContainer/TopBar/SettingsMargin/SettingsButton" to="." method="pause"]
+[connection signal="button_down" from="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer/PauseButton" to="." method="pause"]

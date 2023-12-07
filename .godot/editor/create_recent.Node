@@ -1,3 +1,4 @@
+VBoxContainer
 TextureRect
 ColorRect
 MarginContainer
@@ -9,6 +10,5 @@ VisibleOnScreenNotifier2D
 Panel
 Control
 Node
-VBoxContainer
 TextureProgressBar
 Button

@@ -77,3 +77,5 @@ func resize_tap_buttons_to_screen():
 func pause():
 	get_tree().paused = not get_tree().paused
 	$UI/Pause.visible = not $UI/Pause.visible
+	%ShopButton.visible = not %ShopButton.visible
+	%SettingsButton.visible = not %SettingsButton.visible

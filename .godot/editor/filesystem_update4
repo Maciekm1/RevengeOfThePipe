@@ -7,3 +7,4 @@ res://Scenes/enemy_speedy_bird.tscn
 res://Scenes/enemy.tscn
 res://Scenes/enemy_bomb.tscn
 res://Scenes/object_pooler.tscn
+res://Scenes/main.gd
