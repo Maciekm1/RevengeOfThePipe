@@ -1,0 +1,215 @@
+[gd_scene load_steps=14 format=3 uid="uid://df80681v2wrkd"]
+
+[ext_resource type="Script" path="res://Scenes/uiManager.gd" id="1_3o1c3"]
+[ext_resource type="FontFile" uid="uid://dyntny84l6w1e" path="res://Assets/Fonts/Alata-Regular.ttf" id="1_eommy"]
+[ext_resource type="Texture2D" uid="uid://3lqnp6yqevad" path="res://Assets/Art/UI/btn_circle_01_green.png" id="1_i7t6a"]
+[ext_resource type="Texture2D" uid="uid://bsfsw4mbgg5rb" path="res://Assets/Art/UI/function_icon_player_pause.png" id="2_amgw0"]
+[ext_resource type="Texture2D" uid="uid://kx70e0sdcdsb" path="res://Assets/Art/UI/function_icon_store_1.png" id="3_w14u8"]
+[ext_resource type="Texture2D" uid="uid://viercgrsdxam" path="res://Assets/Art/UI/function_icon_setting_2.png" id="4_lu57g"]
+[ext_resource type="Texture2D" uid="uid://drj5w2dl5rj1a" path="res://Assets/Art/UI/popup_01_frame.png" id="7_tfdoh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mpsb4"]
+texture = ExtResource("1_i7t6a")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wegbp"]
+texture = ExtResource("1_i7t6a")
+modulate_color = Color(0.823529, 0.823529, 0.823529, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbsne"]
+texture = ExtResource("1_i7t6a")
+modulate_color = Color(0.627451, 0.627451, 0.627451, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2wp2h"]
+texture = ExtResource("1_i7t6a")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nnf20"]
+
+[sub_resource type="Theme" id="Theme_mrggy"]
+Label/font_sizes/font_size = 64
+Label/fonts/font = ExtResource("1_eommy")
+
+[node name="UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_3o1c3")
+
+[node name="TopBarBG" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 180)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0.160784, 0.160784, 0.160784, 0.509804)
+
+[node name="TopBar" type="HBoxContainer" parent="TopBarBG"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+
+[node name="MenuSideBar" type="VBoxContainer" parent="TopBarBG/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PauseButtonM" type="MarginContainer" parent="TopBarBG/TopBar/MenuSideBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 15
+
+[node name="PauseButton" type="Button" parent="TopBarBG/TopBar/MenuSideBar/PauseButtonM"]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(148, 155)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/icon_max_width = 127
+theme_override_styles/normal = SubResource("StyleBoxTexture_mpsb4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wegbp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dbsne")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2wp2h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nnf20")
+icon = ExtResource("2_amgw0")
+icon_alignment = 1
+
+[node name="ShopButtonM" type="MarginContainer" parent="TopBarBG/TopBar/MenuSideBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="ShopButton" type="Button" parent="TopBarBG/TopBar/MenuSideBar/ShopButtonM"]
+unique_name_in_owner = true
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(148, 155)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/icon_max_width = 127
+theme_override_styles/normal = SubResource("StyleBoxTexture_mpsb4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wegbp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dbsne")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2wp2h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nnf20")
+icon = ExtResource("3_w14u8")
+icon_alignment = 1
+
+[node name="SettingsButtonM" type="MarginContainer" parent="TopBarBG/TopBar/MenuSideBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="SettingsButton" type="Button" parent="TopBarBG/TopBar/MenuSideBar/SettingsButtonM"]
+unique_name_in_owner = true
+process_mode = 3
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(148, 155)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/icon_max_width = 127
+theme_override_styles/normal = SubResource("StyleBoxTexture_mpsb4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wegbp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dbsne")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_2wp2h")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nnf20")
+icon = ExtResource("4_lu57g")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="TopBarBG/TopBar"]
+custom_minimum_size = Vector2(200, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = SubResource("Theme_mrggy")
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="TopBarBG/TopBar"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="PopUp" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 211.0
+offset_top = 580.0
+offset_right = -95.0
+offset_bottom = -430.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="PopUp/MarginContainer"]
+layout_mode = 2
+color = Color(0.180392, 0.160784, 0.235294, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopUp/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PopUp/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+
+[node name="TitleBG" type="ColorRect" parent="PopUp/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.133333, 0.117647, 0.176471, 1)
+
+[node name="Label" type="Label" parent="PopUp/MarginContainer/VBoxContainer/MarginContainer/TitleBG"]
+modulate = Color(0.956863, 0.831373, 0.529412, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_eommy")
+theme_override_font_sizes/font_size = 48
+text = "PopUp Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Content" type="Control" parent="PopUp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="OverLay" type="NinePatchRect" parent="PopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_tfdoh")
+region_rect = Rect2(0, 0, 247, 299)
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
+metadata/_edit_lock_ = true
+
+[connection signal="button_down" from="TopBarBG/TopBar/MenuSideBar/PauseButtonM/PauseButton" to="." method="_on_pause_button_button_down"]
+[connection signal="button_down" from="TopBarBG/TopBar/MenuSideBar/ShopButtonM/ShopButton" to="." method="_on_shop_button_button_down"]
+[connection signal="button_down" from="TopBarBG/TopBar/MenuSideBar/SettingsButtonM/SettingsButton" to="." method="_on_settings_button_button_down"]
