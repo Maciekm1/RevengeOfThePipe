@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://df80681v2wrkd"]
+[gd_scene load_steps=14 format=3 uid="uid://df80681v2wrkd"]
 
 [ext_resource type="Script" path="res://Scenes/uiManager.gd" id="1_3o1c3"]
 [ext_resource type="FontFile" uid="uid://dyntny84l6w1e" path="res://Assets/Fonts/Alata-Regular.ttf" id="1_eommy"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bsfsw4mbgg5rb" path="res://Assets/Art/UI/function_icon_player_pause.png" id="2_amgw0"]
 [ext_resource type="Texture2D" uid="uid://kx70e0sdcdsb" path="res://Assets/Art/UI/function_icon_store_1.png" id="3_w14u8"]
 [ext_resource type="Texture2D" uid="uid://viercgrsdxam" path="res://Assets/Art/UI/function_icon_setting_2.png" id="4_lu57g"]
-[ext_resource type="PackedScene" uid="uid://ds42b3d2ah7s7" path="res://Scenes/UI/pop_up.tscn" id="7_tr85m"]
 [ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="8_q401t"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mpsb4"]
@@ -26,7 +25,7 @@ texture = ExtResource("1_i7t6a")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nnf20"]
 
 [sub_resource type="Theme" id="Theme_mrggy"]
-Label/font_sizes/font_size = 64
+Label/font_sizes/font_size = 86
 Label/fonts/font = ExtResource("1_eommy")
 
 [node name="UI" type="CanvasLayer"]
@@ -38,7 +37,7 @@ custom_minimum_size = Vector2(0, 180)
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-color = Color(0.160784, 0.160784, 0.160784, 0.509804)
+color = Color(1, 1, 1, 0)
 
 [node name="TopBar" type="HBoxContainer" parent="TopBarBG"]
 custom_minimum_size = Vector2(0, 150)
@@ -51,6 +50,7 @@ grow_horizontal = 2
 [node name="MenuSideBar" type="VBoxContainer" parent="TopBarBG/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 25
 
 [node name="PauseButtonM" type="MarginContainer" parent="TopBarBG/TopBar/MenuSideBar"]
 layout_mode = 2
@@ -64,6 +64,7 @@ custom_minimum_size = Vector2(148, 155)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+focus_mode = 0
 theme_override_constants/icon_max_width = 127
 theme_override_styles/normal = SubResource("StyleBoxTexture_mpsb4")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wegbp")
@@ -85,6 +86,7 @@ custom_minimum_size = Vector2(148, 155)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+focus_mode = 0
 theme_override_constants/icon_max_width = 127
 theme_override_styles/normal = SubResource("StyleBoxTexture_mpsb4")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wegbp")
@@ -106,6 +108,7 @@ custom_minimum_size = Vector2(148, 155)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+focus_mode = 0
 theme_override_constants/icon_max_width = 127
 theme_override_styles/normal = SubResource("StyleBoxTexture_mpsb4")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wegbp")
@@ -115,12 +118,20 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_nnf20")
 icon = ExtResource("4_lu57g")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="TopBarBG/TopBar"]
+[node name="MarginContainer" type="MarginContainer" parent="TopBarBG/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 65
+
+[node name="ScoreLabel" type="Label" parent="TopBarBG/TopBar/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 180)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme = SubResource("Theme_mrggy")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
 text = "12"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -131,34 +142,6 @@ custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-
-[node name="PopUp" parent="." instance=ExtResource("7_tr85m")]
-offset_left = 216.0
-offset_top = 356.0
-offset_right = -220.0
-offset_bottom = -233.0
-
-[node name="HealthBarMargin" type="MarginContainer" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -150.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="HealthBar" type="ProgressBar" parent="HealthBarMargin"]
-modulate = Color(0, 1, 0.2, 1)
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-step = 1.0
-allow_greater = true
-show_percentage = false
 
 [node name="LeftTapButton" type="Control" parent="."]
 layout_mode = 3
@@ -193,6 +176,23 @@ rotation = -3.14159
 scale = Vector2(500, 1920)
 texture_normal = ExtResource("8_q401t")
 action = "smash"
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0.027451, 0, 1)
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -175.5
+offset_top = 208.0
+offset_right = 175.5
+offset_bottom = 258.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+step = 0.05
+value = 100.0
+show_percentage = false
 
 [connection signal="button_down" from="TopBarBG/TopBar/MenuSideBar/PauseButtonM/PauseButton" to="." method="_on_pause_button_button_down"]
 [connection signal="button_down" from="TopBarBG/TopBar/MenuSideBar/ShopButtonM/ShopButton" to="." method="_on_shop_button_button_down"]

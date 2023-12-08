@@ -1,10 +1,10 @@
+ColorRect
+MarginContainer
 Label
 Button
 Control
-MarginContainer
 HBoxContainer
 RichTextLabel
-ColorRect
 VBoxContainer
 NinePatchRect
 AnimationPlayer

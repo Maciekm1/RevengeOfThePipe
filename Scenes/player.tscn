@@ -27,7 +27,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="UpperPipeV" type="Sprite2D" parent="UpperPipe"]
-modulate = Color(1, 1, 1, 0.392157)
+modulate = Color(1, 1, 1, 0.490196)
 position = Vector2(-3, -1361)
 texture = ExtResource("2_dc83f")
 
@@ -55,7 +55,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="LowerPipeV" type="Sprite2D" parent="LowerPipe"]
-modulate = Color(1, 1, 1, 0.392157)
+modulate = Color(1, 1, 1, 0.490196)
 position = Vector2(3, -1360)
 scale = Vector2(-1, 1)
 texture = ExtResource("2_dc83f")

@@ -1,25 +1,19 @@
-[gd_scene load_steps=29 format=3 uid="uid://deoabbasbdx6h"]
+[gd_scene load_steps=19 format=3 uid="uid://deoabbasbdx6h"]
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
 [ext_resource type="PackedScene" uid="uid://c8ignihjhafx7" path="res://Scenes/wave_spawner.tscn" id="2_sm002"]
-[ext_resource type="Texture2D" uid="uid://dm2qxj8mb5rym" path="res://Assets/Art/BG.svg" id="2_wstrl"]
-[ext_resource type="Texture2D" uid="uid://crj8n44e4u0wy" path="res://Assets/Art/one_pixel.png" id="4_8yo7f"]
+[ext_resource type="Texture2D" uid="uid://djh2f7dru8sd5" path="res://Assets/Art/luke-chesser-3rWagdKBF7U-unsplash.jpg" id="2_y2kp2"]
 [ext_resource type="FontFile" uid="uid://dyntny84l6w1e" path="res://Assets/Fonts/Alata-Regular.ttf" id="5_8yf6i"]
-[ext_resource type="Texture2D" uid="uid://sp5rlhveke5j" path="res://Assets/Art/UI/icon_white_setting_l.png" id="5_dftes"]
 [ext_resource type="Script" path="res://Scripts/enemy_spawn_info.gd" id="5_p7kvq"]
-[ext_resource type="Texture2D" uid="uid://3lqnp6yqevad" path="res://Assets/Art/UI/btn_circle_01_green.png" id="5_ynu78"]
 [ext_resource type="Texture2D" uid="uid://b4ysqhhknaoq0" path="res://Assets/Art/UI/Slider/slider_edgetype_01_frame_front.png" id="8_24mxl"]
 [ext_resource type="Texture2D" uid="uid://c8qq7478emoie" path="res://Assets/Art/UI/Slider/slider_edgetype_01_fill.png" id="9_f5dnq"]
-[ext_resource type="Texture2D" uid="uid://bsfsw4mbgg5rb" path="res://Assets/Art/UI/function_icon_player_pause.png" id="10_jchch"]
 [ext_resource type="PackedScene" uid="uid://b3wb8q781bkta" path="res://Scenes/object_pooler.tscn" id="11_x0nc1"]
 [ext_resource type="PackedScene" uid="uid://dyt7ynyyr7ef1" path="res://Scenes/enemy_simple_bird.tscn" id="12_pih2v"]
 [ext_resource type="PackedScene" uid="uid://dc2yf53dy5yb" path="res://Scenes/enemy_tanky_bird.tscn" id="13_fwvbh"]
 [ext_resource type="PackedScene" uid="uid://cemco87sdcl8d" path="res://Scenes/enemy_speedy_bird.tscn" id="14_t2ccf"]
 [ext_resource type="PackedScene" uid="uid://dfys04kfweb4q" path="res://Scenes/enemy_bomb.tscn" id="15_0scqv"]
-[ext_resource type="Texture2D" uid="uid://cugpwat4ir7x6" path="res://Assets/Art/UI/StatusBar/status_frame.png" id="15_us6pe"]
-[ext_resource type="Texture2D" uid="uid://crsfpa36rv15e" path="res://Assets/Art/UI/StatusBar/status_icon_gold.png" id="16_qeqvx"]
-[ext_resource type="Texture2D" uid="uid://dky8ne2ckih2l" path="res://Assets/Art/UI/StatusBar/status_btn_add.png" id="17_4fdmc"]
+[ext_resource type="PackedScene" uid="uid://df80681v2wrkd" path="res://Scenes/ui.tscn" id="18_tpa2g"]
 
 [sub_resource type="Resource" id="Resource_01o77"]
 script = ExtResource("5_p7kvq")
@@ -53,19 +47,6 @@ spawn_cost = 3
 min_wave_req = 5
 object_pool = NodePath("../ObjectPools/SpeedyBirdPool")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e4wsj"]
-texture = ExtResource("5_ynu78")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g6xss"]
-texture = ExtResource("5_ynu78")
-modulate_color = Color(0.92549, 0.92549, 0.92549, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x1j3l"]
-texture = ExtResource("5_ynu78")
-modulate_color = Color(0.776471, 0.776471, 0.776471, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ux2lb"]
-
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7u3kn")
 
@@ -78,7 +59,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_wstrl")
+texture = ExtResource("2_y2kp2")
+
+[node name="ColorRect" type="ColorRect" parent="BG_Layer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.556863, 0.933333, 0)
 
 [node name="WaveSpawner" parent="." instance=ExtResource("2_sm002")]
 position = Vector2(-358, 960)
@@ -98,314 +89,6 @@ metadata/_edit_lock_ = true
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(1200, 400, 1200, 1520)
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="HealthBarMargin" type="MarginContainer" parent="UI"]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -150.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="HealthBar" type="ProgressBar" parent="UI/HealthBarMargin"]
-modulate = Color(0, 1, 0.2, 1)
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-step = 1.0
-allow_greater = true
-show_percentage = false
-
-[node name="Pause" type="ColorRect" parent="UI"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.160784, 0.160784, 0.160784, 0.490196)
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="TextureRect" type="TextureRect" parent="UI/Pause"]
-self_modulate = Color(1, 1, 1, 0.490196)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("10_jchch")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="GoldStatusBar" type="MarginContainer" parent="UI/Pause"]
-custom_minimum_size = Vector2(225, 0)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -262.0
-offset_top = 52.0
-offset_right = -37.0
-offset_bottom = 257.0
-grow_horizontal = 0
-size_flags_horizontal = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/Pause/GoldStatusBar"]
-self_modulate = Color(0.18359, 0.18359, 0.18359, 0.588235)
-custom_minimum_size = Vector2(0, 68)
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("15_us6pe")
-region_rect = Rect2(0, 0, 40, 68)
-patch_margin_left = 20
-patch_margin_right = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Pause/GoldStatusBar/NinePatchRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="UI/Pause/GoldStatusBar/NinePatchRect/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 20
-
-[node name="TextureRect" type="TextureRect" parent="UI/Pause/GoldStatusBar/NinePatchRect/HBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(51.2, 54.4)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("16_qeqvx")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="UI/Pause/GoldStatusBar/NinePatchRect/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-theme_override_fonts/font = ExtResource("5_8yf6i")
-theme_override_font_sizes/font_size = 36
-text = "0
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Pause/GoldStatusBar/NinePatchRect/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_right = 20
-
-[node name="TextureButton" type="TextureButton" parent="UI/Pause/GoldStatusBar/NinePatchRect/HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture_normal = ExtResource("17_4fdmc")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 50
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="TopBar" type="HBoxContainer" parent="UI/MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="SettingsMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.3
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 25
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/TopBar/SettingsMargin"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="PauseButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer"]
-process_mode = 3
-custom_minimum_size = Vector2(148, 155)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_e4wsj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g6xss")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_x1j3l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
-icon = ExtResource("5_dftes")
-icon_alignment = 1
-
-[node name="ShopButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer"]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-custom_minimum_size = Vector2(148, 155)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_e4wsj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g6xss")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_x1j3l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
-icon_alignment = 1
-
-[node name="SettingsButton" type="Button" parent="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer"]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-custom_minimum_size = Vector2(148, 155)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_e4wsj")
-theme_override_styles/hover = SubResource("StyleBoxTexture_g6xss")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_x1j3l")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ux2lb")
-icon_alignment = 1
-
-[node name="WaveInfoMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 40
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="WaveLabel" type="Label" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("5_8yf6i")
-theme_override_font_sizes/font_size = 36
-text = "Current Wave: "
-
-[node name="CurrentWaveLabel" type="Label" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("5_8yf6i")
-theme_override_font_sizes/font_size = 36
-text = "1"
-horizontal_alignment = 1
-
-[node name="WaveProgressBarMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer"]
-custom_minimum_size = Vector2(350, 40)
-layout_mode = 2
-theme_override_constants/margin_left = -5
-metadata/_edit_use_anchors_ = true
-
-[node name="WaveProgressOverlay" type="NinePatchRect" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin"]
-layout_mode = 2
-texture = ExtResource("8_24mxl")
-patch_margin_left = 30
-patch_margin_right = 30
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin/WaveProgressOverlay"]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-metadata/_edit_lock_ = true
-
-[node name="WaveProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/TopBar/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin/WaveProgressOverlay/MarginContainer"]
-unique_name_in_owner = true
-show_behind_parent = true
-layout_mode = 2
-max_value = 8.0
-step = 0.05
-nine_patch_stretch = true
-texture_progress = ExtResource("9_f5dnq")
-
-[node name="ScoreMargin" type="MarginContainer" parent="UI/MarginContainer/TopBar"]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
-theme_override_constants/margin_top = 45
-
-[node name="Score" type="Label" parent="UI/MarginContainer/TopBar/ScoreMargin"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_8yf6i")
-theme_override_font_sizes/font_size = 72
-text = "0
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="LeftTapButton" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="LeftTap" type="TouchScreenButton" parent="UI/LeftTapButton"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(0, 245)
-scale = Vector2(500, 1675)
-texture_normal = ExtResource("4_8yo7f")
-action = "player_jump"
-
-[node name="RightTapButton" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_right = 40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="RightTap" type="TouchScreenButton" parent="UI/RightTapButton"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(0, 1920)
-rotation = -3.14159
-scale = Vector2(500, 1920)
-texture_normal = ExtResource("4_8yo7f")
-action = "smash"
-
 [node name="ObjectPools" type="Node" parent="."]
 
 [node name="SimpleBirdPool" parent="ObjectPools" instance=ExtResource("11_x0nc1")]
@@ -424,4 +107,76 @@ start_pool_size = 5
 object = ExtResource("15_0scqv")
 start_pool_size = 5
 
-[connection signal="button_down" from="UI/MarginContainer/TopBar/SettingsMargin/VBoxContainer/PauseButton" to="." method="pause"]
+[node name="UI" parent="." instance=ExtResource("18_tpa2g")]
+
+[node name="WaveInfoMargin" type="MarginContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 54.0
+offset_top = -192.0
+offset_right = 429.0
+offset_bottom = -57.0
+grow_vertical = 0
+size_flags_horizontal = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 40
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/WaveInfoMargin"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WaveInfoMargin/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="UI/WaveInfoMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_8yf6i")
+theme_override_font_sizes/font_size = 36
+text = "Current Wave: "
+
+[node name="CurrentWaveLabel" type="Label" parent="UI/WaveInfoMargin/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("5_8yf6i")
+theme_override_font_sizes/font_size = 36
+text = "1"
+horizontal_alignment = 1
+
+[node name="WaveProgressBarMargin" type="MarginContainer" parent="UI/WaveInfoMargin/VBoxContainer"]
+custom_minimum_size = Vector2(350, 40)
+layout_mode = 2
+theme_override_constants/margin_left = -5
+metadata/_edit_use_anchors_ = true
+
+[node name="WaveProgressOverlay" type="NinePatchRect" parent="UI/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin"]
+layout_mode = 2
+texture = ExtResource("8_24mxl")
+patch_margin_left = 30
+patch_margin_right = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin/WaveProgressOverlay"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="WaveProgressBar" type="TextureProgressBar" parent="UI/WaveInfoMargin/VBoxContainer/WaveProgressBarMargin/WaveProgressOverlay/MarginContainer"]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 2
+max_value = 8.0
+step = 0.05
+nine_patch_stretch = true
+texture_progress = ExtResource("9_f5dnq")

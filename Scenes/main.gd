@@ -3,16 +3,16 @@ extends Node2D
 var score: int = 0:
 	set(value):
 		score = value
-		score_label.text = str(score)
+		ui.update_score_label(str(score))
 var game_time: float = 0
 
 @onready var player: Player = $Player
-@onready var score_label = %Score
 
 var max_wave_credits: int = 8
 
 @onready var left_tap = $UI/LeftTapButton/LeftTap
 @onready var right_tap = $UI/RightTapButton/RightTap
+@onready var ui = $UI as UI
 
 func _ready():
 	#Init
@@ -52,12 +52,11 @@ func player_health_bar_setup():
 	$Player.connect("on_death", reset)
 	
 	# health Bar For Player
-	$UI/HealthBarMargin/HealthBar.max_value = $Player.get_node("HealthComponent").max_health
+	ui.update_player_health_bar_max($Player.get_node("HealthComponent").max_health)
 	update_health_bar_ui($Player.get_node("HealthComponent").max_health)
 	
 func update_health_bar_ui(new_health):
-	var tween = create_tween()
-	tween.tween_property($UI/HealthBarMargin/HealthBar, "value", new_health, 0.1)
+	ui.update_player_health_bar(new_health)
 	
 func update_wave_ui(wave, max_credits):
 	%CurrentWaveLabel.text = str(wave)
@@ -73,9 +72,3 @@ func resize_tap_buttons_to_screen():
 	left_tap.scale = Vector2(screen_size.x/2, screen_size.y)
 	right_tap.scale = Vector2(screen_size.x/2, screen_size.y)
 	right_tap.position = Vector2(0, screen_size.y)
-
-func pause():
-	get_tree().paused = not get_tree().paused
-	$UI/Pause.visible = not $UI/Pause.visible
-	%ShopButton.visible = not %ShopButton.visible
-	%SettingsButton.visible = not %SettingsButton.visible
