@@ -1,0 +1,169 @@
+[gd_scene load_steps=9 format=3 uid="uid://ds42b3d2ah7s7"]
+
+[ext_resource type="FontFile" uid="uid://dyntny84l6w1e" path="res://Assets/Fonts/Alata-Regular.ttf" id="1_h3bvm"]
+[ext_resource type="Script" path="res://Scenes/UI/pop_up.gd" id="1_pse77"]
+[ext_resource type="Texture2D" uid="uid://drj5w2dl5rj1a" path="res://Assets/Art/UI/popup_01_frame.png" id="2_a5rma"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_apsgr"]
+load_path = "res://.godot/imported/btn_rectangle_01_n_brown.png-7bcf04f3337e6fecdcb4da465d9bf6a2.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_11cf5"]
+content_margin_top = 13.0
+texture = SubResource("CompressedTexture2D_apsgr")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2k6aw"]
+content_margin_top = 13.0
+texture = SubResource("CompressedTexture2D_apsgr")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+modulate_color = Color(0.85098, 0.85098, 0.85098, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2xbx6"]
+content_margin_top = 13.0
+texture = SubResource("CompressedTexture2D_apsgr")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+modulate_color = Color(0.729412, 0.729412, 0.729412, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rq1pl"]
+
+[node name="PopUp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -436.0
+offset_bottom = -491.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pse77")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.309804, 0.643137, 0.184314, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 10
+
+[node name="TitleBG" type="ColorRect" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.2, 0.419608, 0.117647, 1)
+
+[node name="TopTitle" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/TitleBG"]
+unique_name_in_owner = true
+modulate = Color(0.956863, 0.831373, 0.529412, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_h3bvm")
+theme_override_font_sizes/font_size = 48
+text = "PopUp Title"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Content" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="ContentLabel" type="Label" parent="MarginContainer/VBoxContainer/Content"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 52.0
+offset_right = -29.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_h3bvm")
+theme_override_font_sizes/font_size = 48
+text = "This is some test text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonControl" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="BottomButton" type="Button" parent="MarginContainer/VBoxContainer/ButtonControl"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.298
+anchor_top = 0.254
+anchor_right = 0.708
+anchor_bottom = 0.399
+offset_left = -92.844
+offset_top = -47.038
+offset_right = 83.176
+offset_bottom = 41.397
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_h3bvm")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_11cf5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2k6aw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2xbx6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rq1pl")
+text = "Confirm"
+
+[node name="OverLay" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a5rma")
+region_rect = Rect2(0, 0, 247, 299)
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
+metadata/_edit_lock_ = true
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/ButtonControl/BottomButton" to="." method="_on_bottom_button_button_down"]

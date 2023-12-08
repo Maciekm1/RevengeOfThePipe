@@ -1,5 +1,5 @@
-res://Scenes/main.tscn
 res://Scenes/ui.tscn
+res://Scenes/main.tscn
 res://Scenes/player.tscn
 res://Scenes/wave_spawner.tscn
 res://Scenes/enemy_simple_bird.tscn
@@ -8,4 +8,6 @@ res://Scenes/enemy_speedy_bird.tscn
 res://Scenes/enemy.tscn
 res://Scenes/enemy_bomb.tscn
 res://Scenes/object_pooler.tscn
-res://Scenes/uiManager.gd
+res://Resources/ui.tres
+res://Scenes/UI/pop_up.tscn
+res://Scenes/UI/pop_up.gd

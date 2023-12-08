@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b2adduruuydc5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_apsgr"]
+load_path = "res://.godot/imported/btn_rectangle_01_n_brown.png-7bcf04f3337e6fecdcb4da465d9bf6a2.ctex"
+
+[resource]
+texture = SubResource("CompressedTexture2D_apsgr")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+modulate_color = Color(0.729412, 0.729412, 0.729412, 1)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bebpc1y280na0"
-path="res://.godot/imported/_0a1fdaab-2e82-404b-bd11-60787104a377.jpeg-a02b4cf87dc074e3f0f3046f9a6cb125.ctex"
+uid="uid://dup78ihtdj3et"
+path="res://.godot/imported/btn_rectangle_01_n_brown.png-7bcf04f3337e6fecdcb4da465d9bf6a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/_0a1fdaab-2e82-404b-bd11-60787104a377.jpeg"
-dest_files=["res://.godot/imported/_0a1fdaab-2e82-404b-bd11-60787104a377.jpeg-a02b4cf87dc074e3f0f3046f9a6cb125.ctex"]
+source_file="res://Assets/Art/UI/btn_rectangle_01_n_brown.png"
+dest_files=["res://.godot/imported/btn_rectangle_01_n_brown.png-7bcf04f3337e6fecdcb4da465d9bf6a2.ctex"]
 
 [params]
 
