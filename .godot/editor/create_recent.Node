@@ -1,3 +1,7 @@
+TextureRect
+Sprite2D
+ParallaxBackground
+ParallaxLayer
 ColorRect
 MarginContainer
 Label
@@ -9,6 +13,3 @@ VBoxContainer
 NinePatchRect
 AnimationPlayer
 CanvasLayer
-TextureRect
-TextureButton
-VisibleOnScreenNotifier2D

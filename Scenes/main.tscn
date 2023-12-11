@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes/main.gd" id="1_7u3kn"]
 [ext_resource type="PackedScene" uid="uid://db4trvtd8vv77" path="res://Scenes/player.tscn" id="1_uuu27"]
+[ext_resource type="Texture2D" uid="uid://c55jsfqu2vnjf" path="res://path485.png" id="2_egwab"]
 [ext_resource type="PackedScene" uid="uid://c8ignihjhafx7" path="res://Scenes/wave_spawner.tscn" id="2_sm002"]
-[ext_resource type="Texture2D" uid="uid://djh2f7dru8sd5" path="res://Assets/Art/luke-chesser-3rWagdKBF7U-unsplash.jpg" id="2_y2kp2"]
 [ext_resource type="FontFile" uid="uid://dyntny84l6w1e" path="res://Assets/Fonts/Alata-Regular.ttf" id="5_8yf6i"]
 [ext_resource type="Script" path="res://Scripts/enemy_spawn_info.gd" id="5_p7kvq"]
 [ext_resource type="Texture2D" uid="uid://b4ysqhhknaoq0" path="res://Assets/Art/UI/Slider/slider_edgetype_01_frame_front.png" id="8_24mxl"]
@@ -51,15 +51,7 @@ object_pool = NodePath("../ObjectPools/SpeedyBirdPool")
 script = ExtResource("1_7u3kn")
 
 [node name="BG_Layer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="BG_Layer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_y2kp2")
+layer = -101
 
 [node name="ColorRect" type="ColorRect" parent="BG_Layer"]
 anchors_preset = 15
@@ -69,7 +61,20 @@ offset_left = 3.0
 offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.556863, 0.933333, 0)
+color = Color(0.670588, 0.741176, 0.74902, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BG_Layer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -540.0
+offset_top = -727.0
+offset_right = 540.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_egwab")
 
 [node name="WaveSpawner" parent="." instance=ExtResource("2_sm002")]
 position = Vector2(-358, 960)
