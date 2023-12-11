@@ -1,8 +1,8 @@
-TextureRect
-Sprite2D
-ParallaxBackground
-ParallaxLayer
 ColorRect
+Sprite2D
+ParallaxLayer
+ParallaxBackground
+TextureRect
 MarginContainer
 Label
 Button
@@ -12,4 +12,3 @@ RichTextLabel
 VBoxContainer
 NinePatchRect
 AnimationPlayer
-CanvasLayer

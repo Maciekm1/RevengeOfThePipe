@@ -13,10 +13,10 @@ var max_wave_credits: int = 8
 @onready var left_tap = $UI/LeftTapButton/LeftTap
 @onready var right_tap = $UI/RightTapButton/RightTap
 @onready var ui = $UI as UI
+@onready var parallax_background = $ParallaxBackground as ParallaxBackground
 
 func _ready():
 	#Init
-	Globals.camera = $Camera2D
 	player_health_bar_setup()
 	
 	$WaveSpawner.connect("spawn_enemy", spawn_enemy)
@@ -26,6 +26,9 @@ func _ready():
 func _process(delta):
 	resize_tap_buttons_to_screen()
 	game_time += delta
+	
+	parallax_background.scroll_offset += .2 * Vector2(1, 0)
+	print(parallax_background.scroll_offset)
 	
 func reset():
 	score = 0

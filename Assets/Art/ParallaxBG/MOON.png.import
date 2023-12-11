@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c55jsfqu2vnjf"
-path="res://.godot/imported/path485.png-d535750d3e9ed0dbef83d7c6371e82d2.ctex"
+uid="uid://bsvvkij6vqwi8"
+path="res://.godot/imported/MOON.png-c6416c855ddef0c5a6b52bc4cbc2ffc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://path485.png"
-dest_files=["res://.godot/imported/path485.png-d535750d3e9ed0dbef83d7c6371e82d2.ctex"]
+source_file="res://Assets/Art/ParallaxBG/MOON.png"
+dest_files=["res://.godot/imported/MOON.png-c6416c855ddef0c5a6b52bc4cbc2ffc1.ctex"]
 
 [params]
 
