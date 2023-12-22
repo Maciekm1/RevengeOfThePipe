@@ -28,7 +28,6 @@ func _process(delta):
 	game_time += delta
 	
 	parallax_background.scroll_offset += .2 * Vector2(1, 0)
-	print(parallax_background.scroll_offset)
 	
 func reset():
 	score = 0

@@ -1,10 +1,1 @@
 res://Scenes/main.tscn
-res://Scenes/parallax_background.tscn
-res://Scenes/player.tscn
-res://Scenes/enemy_tanky_bird.tscn
-res://Scenes/enemy_speedy_bird.tscn
-res://Scenes/enemy.tscn
-res://Scenes/enemy_bomb.tscn
-res://Scenes/ui.tscn
-res://Scenes/UI/pop_up.tscn
-res://Scenes/main.gd

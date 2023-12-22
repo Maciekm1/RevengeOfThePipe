@@ -1,3 +1,4 @@
+Control
 ColorRect
 Sprite2D
 ParallaxLayer
@@ -6,7 +7,6 @@ TextureRect
 MarginContainer
 Label
 Button
-Control
 HBoxContainer
 RichTextLabel
 VBoxContainer
